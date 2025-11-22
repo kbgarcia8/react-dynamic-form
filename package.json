@@ -1,0 +1,41 @@
+{
+  "name": "react-dynamic-form",
+  "version": "1.0.0",
+  "description": "A form that can be nested with editable, expandable and flexible input-forms",
+  "keywords": [
+    "form",
+    "dynamic",
+    "nested",
+    "editable",
+    "expandable"
+  ],
+  "homepage": "https://github.com/kbgarcia8/react-dynamic-form#readme",
+  "bugs": {
+    "url": "https://github.com/kbgarcia8/react-dynamic-form/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kbgarcia8/react-dynamic-form.git"
+  },
+  "license": "ISC",
+  "author": "kbgarcia8",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "@types/react": "^19.2.6",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.1",
+    "typescript": "^5.9.3",
+    "vite": "^7.2.4"
+  },
+  "dependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  }
+}
