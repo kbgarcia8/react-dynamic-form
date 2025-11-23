@@ -16,7 +16,7 @@ const Button = ({
 
     return (
         <Styled.DefaultButton
-            onClick={onClick}
+            onClick={onClick as React.MouseEventHandler<HTMLButtonElement>}
             id={id}
             type={buttonType}
             className={className}

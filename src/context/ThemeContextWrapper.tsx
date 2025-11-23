@@ -14,7 +14,7 @@ import type { ChildrenProp } from "@type/propTypes";
 // ? That is why const useTheme =() => {return useContext(ThemeContext)}; is moved to a separate file useTheme.js
 
 export const ThemeContextProvider = ({children}:ChildrenProp) => {
-    const [currentTheme, setCurrentTheme] = useState(lightTheme);
+    const [currentTheme, setCurrentTheme] = useState<Theme>(lightTheme);
 
     const toggleTheme = () => {
         setCurrentTheme((prevTheme:Theme) => (prevTheme === lightTheme ? darkTheme : lightTheme));
