@@ -13,7 +13,7 @@ import type { ChildrenProp } from "@type/propTypes";
 //But Vite’s React plugin has a known quirk: a file exporting both component + hook + imports that aren’t components may still trigger the warning.
 // ? That is why const useTheme =() => {return useContext(ThemeContext)}; is moved to a separate file useTheme.js
 
-export const ThemeContextProvider:React.FC<ChildrenProp> = ({children}) => {
+export const ThemeContextProvider = ({children}:ChildrenProp) => {
     const [currentTheme, setCurrentTheme] = useState(lightTheme);
 
     const toggleTheme = () => {

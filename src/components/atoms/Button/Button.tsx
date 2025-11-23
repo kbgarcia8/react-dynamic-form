@@ -2,7 +2,7 @@ import React from "react";
 import * as Styled from "./Button.styles";
 import type { ButtonProps } from "@type/propTypes";
 
-const Button: React.FC<ButtonProps> = ({
+const Button = ({
     onClick,
     id,
     buttonType,
@@ -12,7 +12,7 @@ const Button: React.FC<ButtonProps> = ({
     text = "",
     className = "",
     dataAttributes = {}
-})=> {
+}:ButtonProps) => {
 
     return (
         <Styled.DefaultButton
