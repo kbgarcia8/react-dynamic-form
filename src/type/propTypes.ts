@@ -1,4 +1,5 @@
 import type { Theme } from '@type/ConstantTypes';
+import type React from 'react';
 
 export interface themeContextValue {
   currentTheme: Theme;
@@ -59,3 +60,25 @@ export interface GeneralInput extends BaseInput {
 }
 
 export type InputProps = GeneralInput | TextAreaInput | CheckedInput;
+
+export interface LabelProps {
+    htmlFor: string;
+    textLabel: string;
+    additionalInfo: string;
+    $labelFlexDirection?: React.CSSProperties['flexDirection'];
+    source?: string, 
+    svg?: React.ReactNode;
+    className: string;
+}
+
+export type LabeledInputProps = LabelProps & InputProps & {
+    labelClass?: string;
+    inputClass?: string;
+    isEditable?: boolean;
+    editIcon?: React.ReactNode;
+    onClickEdit?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+    deleteIcon?: React.ReactNode;
+    onClickDelete?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+    idx?: number;
+    ref: React.Ref<HTMLInputElement | HTMLTextAreaElement>;
+};
