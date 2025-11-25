@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { lightTheme, darkTheme } from "@styles/theme";
 import {ThemeProvider as StyledThemeProvider} from 'styled-components';
 import ThemeContext from "@context/ThemeContext";
-import type { Theme } from "@type/ConstantTypes";
+import type { Theme } from "@type/constantTypes";
 import type { ChildrenProp } from "@type/propTypes";
 
 // ? React Fast Refresh only allows React components and hooks in a file if the file is considered a module boundary.

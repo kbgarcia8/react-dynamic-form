@@ -1,4 +1,4 @@
-import type { Theme } from '@type/ConstantTypes';
+import type { Theme } from '@type/constantTypes';
 import type React from 'react';
 
 export interface themeContextValue {
@@ -10,6 +10,8 @@ export type ChildrenProp = {
   children: React.ReactNode;
 };
 
+type stringType = string | undefined;
+
 type ButtonType = 'button' | 'submit';
 
 export interface ButtonProps {
@@ -20,7 +22,8 @@ export interface ButtonProps {
     svg?: React.ReactNode;
     alt?: string;
     text?: string;
-    className: string;
+    className: stringType;
+    pattern?: string | number | undefined;
     dataAttributes: Record<string, string|number|boolean>;
 }
 
@@ -28,13 +31,13 @@ const InputTypes = ['text', 'password', 'email', 'number', 'tel', 'url', 'search
 
 interface BaseInput {
     id: string;
-    placeholderText: string;
+    placeholderText: stringType;
     onChange : (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
     isRequired: boolean;
     dataAttributes?: Record<string, string|number|boolean>;
-    disabled?: boolean;
-    pattern: string;
-    className?: string;
+    disabled?: boolean | undefined;
+    className?: stringType;
+    name: string;
 }
 
 interface TextAreaInput extends BaseInput {
@@ -53,7 +56,8 @@ export interface GeneralInput extends BaseInput {
     type: Exclude<typeof InputTypes[number], 'textarea' | 'radio' | 'checkbox'>;
     // ? This is like traversing the array and getting the union of all its values
     // ? Exclude  means “Take all possible values from the InputTypes array, but remove 'textarea', 'radio', and 'checkbox'.”
-    value: string | number;
+    value: string;
+    pattern?: stringType;
     checked?: never;  // not allowed
     rows?: never;     // not allowed
     cols?: never;     // not allowed
@@ -68,7 +72,7 @@ export interface LabelProps {
     $labelFlexDirection?: React.CSSProperties['flexDirection'];
     source?: string, 
     svg?: React.ReactNode;
-    className: string;
+    className: stringType;
 }
 
 export type LabeledInputProps = LabelProps & InputProps & {

@@ -1,4 +1,4 @@
-import type { Theme } from "@type/ConstantTypes"
+import type { Theme } from "@type/constantTypes"
 import { asColor } from "@utils/utils";
 
 export const breakpoints:Record<string, string> ={

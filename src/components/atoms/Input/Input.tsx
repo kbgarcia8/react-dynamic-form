@@ -3,7 +3,7 @@ import * as Styled from "./Inputs.styles";
 import type { InputProps, GeneralInput } from "@type/propTypes";
 
 const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputProps>(( props, ref) => {
-    const { type, id, placeholderText, onChange, isRequired, dataAttributes, disabled, pattern, className } = props;
+    const { type, id, placeholderText, onChange, isRequired, dataAttributes, disabled, className } = props;
     if (type === 'textarea') {
         const {rows = 5, cols = 30, value, ...rest } = props;
         return (
@@ -18,6 +18,7 @@ const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputProps>(( p
                 className={className}
                 ref={ref as React.Ref<HTMLTextAreaElement>}
                 disabled={disabled}
+                required={isRequired}
             />
         );
     }
@@ -25,7 +26,7 @@ const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputProps>(( p
     if (type === 'radio' || type === 'checkbox') {
         const { checked, ...rest} = props;
         return (
-        <input
+        <Styled.DefaultInput
         ref={ref as React.Ref<HTMLInputElement>}
         type="checkbox"
         id={id}
@@ -38,7 +39,7 @@ const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputProps>(( p
       );
     }
     const generalProps = props as GeneralInput;
-    const { value, ...rest } = generalProps;
+    const { value, pattern, ...rest } = generalProps;
     return(
         <Styled.DefaultInput
             id={id}
