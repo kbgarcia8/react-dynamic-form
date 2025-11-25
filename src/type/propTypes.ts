@@ -17,7 +17,7 @@ type dataAttributesType = Record<string, string|number|boolean> | undefined
 type ButtonType = 'button' | 'submit';
 
 export interface ButtonProps {
-    onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+    onClick: React.MouseEventHandler<HTMLButtonElement>;
     id: string;
     buttonType: ButtonType;
     source?: string
@@ -33,7 +33,7 @@ const InputTypes = ['text', 'password', 'email', 'number', 'tel', 'url', 'search
 
 interface BaseInput {
     id: string;
-    onChange : (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+    onChange : React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>;
     isRequired: boolean;
     dataAttributes?: dataAttributesType;
     disabled?: boolean | undefined;
@@ -83,9 +83,9 @@ export type LabeledInputProps = LabelProps & InputProps & {
     inputClass?: string;
     isEditable?: boolean;
     editIcon?: React.ReactNode;
-    onClickEdit: (e: React.MouseEvent<HTMLButtonElement>) => void;
+    onClickEdit: React.MouseEventHandler<HTMLButtonElement>;
     deleteIcon?: React.ReactNode;
-    onClickDelete: (e: React.MouseEvent<HTMLButtonElement>) => void;
+    onClickDelete: React.MouseEventHandler<HTMLButtonElement>;
     idx?: number;
     ref: React.Ref<HTMLInputElement | HTMLTextAreaElement>;
 };
@@ -93,16 +93,16 @@ export type LabeledInputProps = LabelProps & InputProps & {
 export interface FormActionButtonsProps extends ButtonProps {
     hasSubmit: boolean;
     submitText: string;
-    handleSubmit: (e: React.MouseEvent<HTMLButtonElement>) => void | undefined;
+    handleSubmit: React.MouseEventHandler<HTMLButtonElement>;
     hasEdit: boolean;
     editText: string;
-    handleEdit: (e: React.MouseEvent<HTMLButtonElement>) => void | undefined;
+    handleEdit: React.MouseEventHandler<HTMLButtonElement>;
     hasCancel: boolean;
     cancelText: string;
-    handleCancel: (e: React.MouseEvent<HTMLButtonElement>) => void | undefined;
+    handleCancel: React.MouseEventHandler<HTMLButtonElement>;
     hasDelete: boolean;
     deleteText: string;
-    handleDelete: (e: React.MouseEvent<HTMLButtonElement>) => void | undefined;
+    handleDelete: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 interface EditableInformation {
@@ -115,8 +115,46 @@ export interface NestedEditableOptionProps {
     legend: string;
     idx: number;
     editableInformation: EditableInformation[];
-    onChangeOfEditableOption: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
-    onClickSaveEdit: (e: React.MouseEvent<HTMLButtonElement>) => void;
-    onClickCancelEdit: (e: React.MouseEvent<HTMLButtonElement>) => void;
-    onClickDeleteEntry: (e: React.MouseEvent<HTMLButtonElement>) => void;
+    onChangeOfEditableOption: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>;
+    onClickSaveEdit: React.MouseEventHandler<HTMLButtonElement>;
+    onClickCancelEdit: React.MouseEventHandler<HTMLButtonElement>;
+    onClickDeleteEntry: React.MouseEventHandler<HTMLButtonElement>;
+}
+
+type inputEntryShape<T extends boolean> = LabeledInputProps & {
+    uniqueClass?: string;
+    editable: T; 
+    editableInformation: EditableInformation[];
+} & (T extends true
+    ? {
+        onClickEdit: React.MouseEventHandler<HTMLButtonElement>;
+        editIcon: React.ReactNode;
+        onClickDelete: React.MouseEventHandler<HTMLButtonElement>;
+        deleteIcon: React.ReactNode;
+        onClickSave: React.MouseEventHandler<HTMLButtonElement>;
+        onClickCancel: React.MouseEventHandler<HTMLButtonElement>;
+    } : {
+        onClickEdit?: never;
+        editIcon?: never;
+        onClickDelete?: never;
+        deleteIcon?: never;
+        onClickSave?: never;
+        onClickCancel?: never;
+    })
+
+interface FieldsetShape {
+    legend: string;
+    inputs: inputEntryShape<boolean>[];
+    height: string;
+    expandable: boolean;
+}
+
+export type DynamicFormProps = FormActionButtonsProps & LabeledInputProps & {
+    fieldsets: FieldsetShape[] | null;
+    formInputs: inputEntryShape<boolean>[];
+    legendText?: string;
+    isExpandable: boolean;
+    labelAndInputContainerClass: string;
+    handleEditableInputEntryChange: React.MouseEventHandler<HTMLButtonElement>;
+    handleAddingInputEntry: React.MouseEventHandler<HTMLButtonElement>;
 }
