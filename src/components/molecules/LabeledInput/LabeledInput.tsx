@@ -14,7 +14,6 @@ const LabeledInput = (props:React.PropsWithChildren<LabeledInputProps>) => {
     $labelFlexDirection,
     svg,
     labelClass,
-    placeholderText,
     onChange,
     isRequired,
     dataAttributes,
@@ -38,7 +37,6 @@ const LabeledInput = (props:React.PropsWithChildren<LabeledInputProps>) => {
                         id={id}
                         name={id}
                         type={"textarea"}
-                        placeholderText={placeholderText}
                         isRequired={isRequired}
                         onChange={onChange}
                         value={value}
@@ -53,7 +51,7 @@ const LabeledInput = (props:React.PropsWithChildren<LabeledInputProps>) => {
             })()}
             {(type !== 'radio' && type !== 'checkbox' && type !== 'textarea') && (() => {
                 const generalProps = props as GeneralInput;
-                const { value, pattern, ...rest } = generalProps;
+                const { value, pattern, placeholderText, ...rest } = generalProps;
                 return(
                     <Input
                         id={id}
@@ -78,9 +76,11 @@ const LabeledInput = (props:React.PropsWithChildren<LabeledInputProps>) => {
                     <Input
                     ref={ref as React.Ref<HTMLInputElement>}
                     type="checkbox"
+                    name={id}
                     id={id}
+                    isRequired={isRequired}
                     checked={checked}
-                    onChange={onChange as React.ChangeEventHandler<HTMLInputElement>}
+                    onChange={onChange}
                     disabled={disabled}
                     className={className}
                     {...dataAttributes}

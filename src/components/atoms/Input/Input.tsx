@@ -3,13 +3,12 @@ import * as Styled from "./Inputs.styles";
 import type { InputProps, GeneralInput } from "@type/propTypes";
 
 const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputProps>(( props, ref) => {
-    const { type, id, placeholderText, onChange, isRequired, dataAttributes, disabled, className } = props;
+    const { type, id, onChange, isRequired, dataAttributes, disabled, className } = props;
     if (type === 'textarea') {
         const {rows = 5, cols = 30, value, ...rest } = props;
         return (
             <Styled.TextArea
                 id={id}
-                placeholder={placeholderText}
                 onChange={onChange}
                 value={value}
                 rows={rows}
@@ -39,7 +38,7 @@ const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputProps>(( p
       );
     }
     const generalProps = props as GeneralInput;
-    const { value, pattern, ...rest } = generalProps;
+    const { value, pattern, placeholderText, ...rest } = generalProps;
     return(
         <Styled.DefaultInput
             id={id}
