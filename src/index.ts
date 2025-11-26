@@ -1,0 +1,1 @@
+export { default as DynamicForm } from './components/organisms/DynamicForm/DynamicForm'
