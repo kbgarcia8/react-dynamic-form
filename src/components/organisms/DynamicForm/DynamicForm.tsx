@@ -4,7 +4,7 @@ import LabeledInput from "@components/molecules/LabeledInput";
 import NestedEditableOption from "@components/molecules/NestedEditableOption";
 import FormActionButtons from "@components/molecules/FormActionButtons";
 import * as Styled from "./DynamicForm.styles";
-import type { DynamicFormProps } from "@type/propTypes";
+import type { CheckedInput, DynamicFormProps, GeneralInput, inputEntryShape, TextAreaInput } from "@type/propTypes";
 
 const DynamicForm = ({
     fieldsets = null, //* if a form has differrent fieldsets
@@ -22,6 +22,7 @@ const DynamicForm = ({
     hasDelete = false,
     hasEdit = false,
     submitText,
+    handleSubmitForm,
     handleSubmit,
     cancelText,
     handleCancel,
@@ -33,8 +34,8 @@ const DynamicForm = ({
     children //* if there are nodes to be inserted after submit/edit/cancel buttons usually in login or signup forms
 }:React.PropsWithChildren<DynamicFormProps>) => {
     return (
-        <Styled.Form id={`${id}-form`} className={className} onSubmit={handleSubmit}>
-            {fieldsets !== null
+        <Styled.Form id={`${id}-form`} className={className} onSubmit={handleSubmitForm}>
+            {fieldsets
                 ? fieldsets.map((fieldset, fieldsetIdx) => (
                     <Styled.FieldsetWrapper key={`${fieldset.legend}-${fieldsetIdx}`} >
                         <Styled.FormFieldset id={`${id}-form-fieldset-${fieldsetIdx}`} className="form-fieldset">
@@ -42,44 +43,46 @@ const DynamicForm = ({
                             {fieldset['inputs'].length !== 0
                             ? fieldset['inputs'].map((input, inputIndex) => (
                                 <React.Fragment key={`form-${id}-${inputIndex}`}>
+                                {input.type === "textarea" && (
                                 <LabeledInput
-                                    className={`${labelAndInputContainerClass} ${input?.uniqueClass}`}
-                                    name={fieldset.legend}
-                                    type={input.type ?? 'text'}
-                                    checked={!!input?.checked}
-                                    id={input?.id ?? `${fieldset.legend}-input`}
-                                    label={input.label}
-                                    additionalInfo={input.additionalInfo}
-                                    $labelFlexDirection={input.$labelFlexDirection}
-                                    icon={input.icon} //svg only
+                                    {...input}
+                                    id={input.id ?? `${fieldset.legend}-input`}
                                     labelClass={labelClass}
-                                    placeholder={input?.placeholderText}
-                                    onchange={input.onchange}
-                                    value={input.value}
-                                    required={!!input.required}
-                                    dataAttributes={input.dataAttributes}
-                                    inputClass={inputClassName}
-                                    ref={input?.ref}
-                                    disabled={!!input?.disabled}
-                                    pattern={input?.pattern}
-                                    rows={input?.rows}
-                                    cols={input?.cols}
-                                    isEditable={!!input?.editable}
-                                    editIcon={input?.editIcon}
-                                    onClickEdit={input?.onclickedit}
-                                    deleteIcon={input?.deleteicon}
-                                    onClickDelete={input?.onclickdelete}
+                                    inputClass={inputClass}
                                     idx={inputIndex}
                                 />
+                                )}
+
+                                {(input.type === "radio" || input.type === "checkbox") && (
+                                <LabeledInput
+                                    {...input}
+                                    id={input.id ?? `${fieldset.legend}-input`}
+                                    labelClass={labelClass}
+                                    inputClass={inputClass}
+                                    idx={inputIndex}
+                                />
+                                )}
+
+                                {input.type !== "textarea" &&
+                                input.type !== "radio" &&
+                                input.type !== "checkbox" && (
+                                <LabeledInput
+                                    {...input}
+                                    id={input.id ?? `${fieldset.legend}-input`}
+                                    labelClass={labelClass}
+                                    inputClass={inputClass}
+                                    idx={inputIndex}
+                                />
+                                )}
                                 //* For editable data e.g. address entry, education entry
                                 {(input.editable && input.editing) && <NestedEditableOption
                                     legend={`${fieldset.legend} ${inputIndex+1}`}
                                     idx={inputIndex}
                                     editableInformation={input?.editableInformation}
-                                    onchangeOfEditableOption={handleEditableInputEntryChange}
-                                    onClickSaveEdit={input?.onclicksave}
-                                    onClickCancelEdit={input?.onclickcancel}
-                                    onClickDeleteEntry={input?.onclickdelete}
+                                    onChangeOfEditableOption={handleEditableInputEntryChange}
+                                    onClickSaveEdit={input?.onClickSave}
+                                    onClickCancelEdit={input?.onClickCancel}
+                                    onClickDeleteEntry={input?.onClickDelete}
                                 />}
                                 </React.Fragment>
                             ))
@@ -99,44 +102,46 @@ const DynamicForm = ({
                         {formInputs.length !== 0
                         ? formInputs.map((input, inputIndex) => (
                             <React.Fragment key={`form-${id}-${inputIndex}`}>
+                                {input.type === "textarea" && (
                                 <LabeledInput
-                                    className={`${labelAndInputContainerClass} ${input?.uniqueClass}`}
-                                    name={legendText}
-                                    type={input.type ?? 'text'}
-                                    checked={!!input?.checked}
-                                    id={input?.id ?? `${legendText}-input`}
-                                    label={input.label}
-                                    additionalInfo={input.additionalInfo}
-                                    direction={input.direction}
-                                    icon={input.icon} //* svg only
-                                    labelClass={labelClassName}
-                                    placeholder={input?.placeholder}
-                                    onchange={input.onchange}
-                                    value={input.value}
-                                    required={!!input.required}
-                                    dataAttributes={input.dataAttributes}
-                                    inputClass={inputClassName}
-                                    ref={input?.ref}
-                                    disabled={!!input?.disabled}
-                                    pattern={input?.pattern}
-                                    rows={input?.rows}
-                                    cols={input?.cols}
-                                    isEditable={!!input?.editable}
-                                    editIcon={input?.editIcon}
-                                    onClickEdit={input?.onclickedit}
-                                    deleteIcon={input?.deleteicon}
-                                    onClickDelete={input?.onclickdelete}
+                                    {...input}
+                                    id={input.id ?? `${legendText}-input`}
+                                    labelClass={labelClass}
+                                    inputClass={inputClass}
                                     idx={inputIndex}
                                 />
-                                {/*For editable data e.g. address entry, education entry*/}
+                                )}
+
+                                {(input.type === "radio" || input.type === "checkbox") && (
+                                <LabeledInput
+                                    {...input}
+                                    id={input.id ?? `${legendText}-input`}
+                                    labelClass={labelClass}
+                                    inputClass={inputClass}
+                                    idx={inputIndex}
+                                />
+                                )}
+
+                                {input.type !== "textarea" &&
+                                input.type !== "radio" &&
+                                input.type !== "checkbox" && (
+                                <LabeledInput
+                                    {...input}
+                                    id={input.id ?? `${legendText}-input`}
+                                    labelClass={labelClass}
+                                    inputClass={inputClass}
+                                    idx={inputIndex}
+                                />
+                                )}
+                                //*For editable data e.g. address entry, education entry
                                 {(input.editable && input.editing) && <NestedEditableOption
                                     legend={`${legendText} ${inputIndex+1}`}
                                     idx={inputIndex}
                                     editableInformation={input?.editableInformation}
-                                    onchangeOfEditableOption={handleEditableInputEntryChange}
-                                    onClickSaveEdit={input?.onclicksave}
-                                    onClickCancelEdit={input?.onclickcancel}
-                                    onClickDeleteEntry={input?.onclickdelete}
+                                    onChangeOfEditableOption={handleEditableInputEntryChange}
+                                    onClickSaveEdit={input?.onClickSave}
+                                    onClickCancelEdit={input?.onClickEdit}
+                                    onClickDeleteEntry={input?.onClickDelete}
                                 />}
                             </React.Fragment>
                         ))
@@ -169,85 +174,6 @@ const DynamicForm = ({
         </Styled.Form>
     );
 }
-
-//* Props Validation
-const validateEditableData = (props, propName, componentName) => {
-    const inputs = props.fieldsets?.flatMap(fieldset => fieldset.inputs) || [];
-
-    for (const input of inputs) {
-        if (input.editable) {
-            // ? check if there is an editing property in input object if it is editable
-            if (
-                typeof input !== "object" ||
-                Object.prototype.hasOwnProperty.call(input,'editing') === false ||
-                typeof input.editing !== "boolean"
-            ) {
-                return new Error(
-                    `Invalid prop data in ${componentName}. When editable is true, data must have an editing key with a boolean value.`
-                );
-            }
-
-            // ! Ensure required editable-related props are present
-            const requiredProps = ["onclickedit", "editicon", "onclickdelete", "deleteicon", "onclicksave", "onclickcancel"];
-            for (const key of requiredProps) {
-                if (typeof input[key] === "undefined") {
-                    return new Error(
-                        `Invalid prop ${key} in ${componentName}. This prop is required when editable is true.`
-                    );
-                }
-            }
-        }
-
-        // ? If input type is a radio must have a checked porperty
-        if (input.type === "radio") {
-            if (
-                typeof input !== "object" ||
-                Object.prototype.hasOwnProperty.call(input,'checked') === false ||
-                typeof input.checked !== "boolean"
-            ) {
-                return new Error(
-                    `Invalid prop data in ${componentName}. When type is "radio", data must have a checked key with a boolean value.`
-                );
-            }
-        }
-    }
-    return null;
-};
-// ! PropTypes by default are considered function that takes argument as follows: function/PropTypes (props, propName, componentName, location, propFullName)
-const inputShape = PropTypes.arrayOf(
-    PropTypes.shape({
-    uniqueClass: PropTypes.string,
-    labelText: PropTypes.string,
-    additionalInfo: PropTypes.string,
-    direction: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired,
-    placeholder: PropTypes.string,
-    editable: PropTypes.bool, 
-    value: PropTypes.string,
-    type: PropTypes.string,
-    required: PropTypes.bool,
-    disabled: PropTypes.bool,
-    checked: PropTypes.bool,
-    pattern: PropTypes.string,
-    editableInformation: PropTypes.arrayOf(
-        PropTypes.shape({
-            name: PropTypes.string,
-            info: PropTypes.string,
-            type: PropTypes.string
-
-        })
-    ),
-    dataAttributes: PropTypes.object,
-    onchange: PropTypes.func,
-    // ? Props below are required when input is editable
-    onClickEdit: PropTypes.func,
-    editIcon: PropTypes.element,
-    onClickDelete: PropTypes.func,
-    deleteIcon: PropTypes.element,
-    onClickSave: PropTypes.func,
-    onClickCancel: PropTypes.func
-    })
-)
 
 
 export default DynamicForm;

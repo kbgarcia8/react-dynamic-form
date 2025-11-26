@@ -31,6 +31,8 @@ const LabeledInput = (props:React.PropsWithChildren<LabeledInputProps>) => {
         <Styled.LabelAndInputContainer className={`${className} ${id.replace('#','')}-label-input-container`}>
             {(type !== 'radio' && type !== 'checkbox') && <Label htmlFor={id} textLabel={textLabel} additionalInfo={additionalInfo} $labelFlexDirection={$labelFlexDirection} svg={svg} className={labelClass} />}
             {((type !== 'radio' && type !== 'checkbox') && type === 'textarea') && (() => {
+                //? Conditional prop destructuring / discriminated narrowing - Extract props AFTER receiving them since not all props are present
+                //? Inside component (your destructuring)
                 const {rows = 5, cols = 30, value, ...rest } = props;
                 return (
                     <Input

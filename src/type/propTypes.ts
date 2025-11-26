@@ -24,7 +24,7 @@ export interface ButtonProps {
     svg?: React.ReactNode;
     alt?: string;
     text?: string;
-    className: stringType;
+    className?: stringType;
     pattern?: string | number | undefined;
     dataAttributes?: dataAttributesType;
 }
@@ -33,7 +33,7 @@ const InputTypes = ['text', 'password', 'email', 'number', 'tel', 'url', 'search
 
 interface BaseInput {
     id: string;
-    onChange : React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>;
+    onChange : React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
     isRequired: boolean;
     dataAttributes?: dataAttributesType;
     disabled?: boolean | undefined;
@@ -41,14 +41,14 @@ interface BaseInput {
     name: string;
 }
 
-interface TextAreaInput extends BaseInput {
+export interface TextAreaInput extends BaseInput {
     type: 'textarea';
     value: string;
     rows: number;
     cols: number;
 }
 
-interface CheckedInput extends BaseInput {
+export interface CheckedInput extends BaseInput {
     type: 'radio' | 'checkbox';
     checked: boolean;
     placeholderText?: never;  // not allowed
@@ -69,18 +69,18 @@ export interface GeneralInput extends BaseInput {
 export type InputProps = GeneralInput | TextAreaInput | CheckedInput;
 
 export interface LabelProps {
-    htmlFor: string;
+    htmlFor?: string;
     textLabel: string;
     additionalInfo: string;
     $labelFlexDirection?: React.CSSProperties['flexDirection'];
     source?: string, 
     svg?: React.ReactNode;
-    className: stringType;
+    className?: stringType;
 }
 
-export type LabeledInputProps = LabelProps & InputProps & {
-    labelClass?: string;
-    inputClass?: string;
+export type EditableInputProps = {
+    labelClass?: string | undefined;
+    inputClass?: string | undefined;
     isEditable?: boolean;
     editIcon?: React.ReactNode;
     onClickEdit: React.MouseEventHandler<HTMLButtonElement>;
@@ -90,7 +90,13 @@ export type LabeledInputProps = LabelProps & InputProps & {
     ref: React.Ref<HTMLInputElement | HTMLTextAreaElement>;
 };
 
-export interface FormActionButtonsProps extends ButtonProps {
+export type LabeledInputProps = 
+(LabelProps & TextAreaInput & EditableInputProps)
+| (LabelProps & CheckedInput & EditableInputProps)
+| (LabelProps & GeneralInput & EditableInputProps);
+
+export interface FormActionButtonsProps {
+    id: string;
     hasSubmit: boolean;
     submitText: string;
     handleSubmit: React.MouseEventHandler<HTMLButtonElement>;
@@ -115,14 +121,15 @@ export interface NestedEditableOptionProps {
     legend: string;
     idx: number;
     editableInformation: EditableInformation[];
-    onChangeOfEditableOption: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>;
+    onChangeOfEditableOption: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
     onClickSaveEdit: React.MouseEventHandler<HTMLButtonElement>;
     onClickCancelEdit: React.MouseEventHandler<HTMLButtonElement>;
     onClickDeleteEntry: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-type inputEntryShape<T extends boolean> = LabeledInputProps & {
+export type inputEntryShape<T extends boolean> = LabeledInputProps & {
     uniqueClass?: string;
+    editing: boolean;
     editable: T; 
     editableInformation: EditableInformation[];
 } & (T extends true
@@ -151,10 +158,12 @@ interface FieldsetShape {
 
 export type DynamicFormProps = FormActionButtonsProps & LabeledInputProps & {
     fieldsets: FieldsetShape[] | null;
+    id: string;
     formInputs: inputEntryShape<boolean>[];
     legendText?: string;
     isExpandable: boolean;
     labelAndInputContainerClass: string;
-    handleEditableInputEntryChange: React.MouseEventHandler<HTMLButtonElement>;
+    handleSubmitForm: React.FormEventHandler<HTMLFormElement>;
+    handleEditableInputEntryChange: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
     handleAddingInputEntry: React.MouseEventHandler<HTMLButtonElement>;
 }
