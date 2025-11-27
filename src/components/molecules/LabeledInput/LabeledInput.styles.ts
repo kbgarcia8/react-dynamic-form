@@ -11,6 +11,7 @@ export const LabelAndInputContainer = styled.div`
 
 export const EditableInputButtonContainer = styled.div`
     display: flex;
-    height: 50%;
-    width: 20%;
+    gap: ${v.spacing.xsmall};
+    width: auto;
+    height: auto;
 `;

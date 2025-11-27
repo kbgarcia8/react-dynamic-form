@@ -9,8 +9,8 @@ export const DefaultInput = styled.input`
     line-height: 1.75;
     padding: ${v.spacing.xxxsmall} ${v.spacing.xsmall};
     max-width: 100%;
-    height: 100%;
-    background-color: #fff;
+    height: auto;
+    background-color: #FFFFFF;
     outline: none;
     border: ${v.borderThickness.thin} solid #000000;
     border-radius: ${v.borderRadius.xsmall};

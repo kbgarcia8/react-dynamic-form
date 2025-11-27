@@ -1,5 +1,5 @@
 import React from "react";
-import * as Styled from './NestedEditableOptopn.styles';
+import * as Styled from './NestedEditableOption.styles';
 import Input from "../..//atoms/Input";
 import type { NestedEditableOptionProps } from "../../../type/propTypes";
 import Button from "../../atoms/Button";

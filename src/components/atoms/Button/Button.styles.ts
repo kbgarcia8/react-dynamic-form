@@ -4,16 +4,16 @@ import { v } from '../../../styles/variables';
 export const DefaultButton = styled.button`
     display: flex;
     align-items: center;
-    justify-items: center;
+    justify-content: center;
     background-color: ${({theme})=> theme.colors.blue || 'blue'};
     color: ${({theme})=> theme.colors.bg || 'white'};
     border: ${v.borderThickness.light} solid ${({theme})=> theme.colors.text || 'black'};
     border-radius: ${v.borderRadius.xlarge};
     padding: ${v.spacing.xxxsmall} ${v.spacing.small};
     margin: 0.125rem;
-    width: 75%;
-    height: 2.5vh;
+    width: auto;
     cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
 
     &:hover {
         background-color: lightblue;
@@ -21,7 +21,11 @@ export const DefaultButton = styled.button`
     }
 
     & .button-icon-text-space {
-        width: 100%;
+        max-width: 100%;
+    }
+    
+    & .button-icon-text-space svg {
+        max-width: 100%;
     }
 `;
 
@@ -34,7 +38,7 @@ export const ButtonTextAndIconSpace = styled.div`
 `;
 
 export const ButtonIcon = styled.img`
-    width: 100%;
+    maxwidth: 100%;
 `;
 
 export const ButtonText = styled.span`
