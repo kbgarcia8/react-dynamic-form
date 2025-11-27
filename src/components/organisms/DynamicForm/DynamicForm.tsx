@@ -1,10 +1,10 @@
 import React from "react";
-import Button from "components/atoms/Button";
-import LabeledInput from "@components/molecules/LabeledInput";
-import NestedEditableOption from "@components/molecules/NestedEditableOption";
-import FormActionButtons from "@components/molecules/FormActionButtons";
+import Button from "../../atoms/Button";
+import LabeledInput from "../../molecules/LabeledInput";
+import NestedEditableOption from "../..//molecules/NestedEditableOption";
+import FormActionButtons from "../../molecules/FormActionButtons";
 import * as Styled from "./DynamicForm.styles";
-import type { CheckedInput, DynamicFormProps, GeneralInput, inputEntryShape, TextAreaInput } from "@type/propTypes";
+import type { CheckedInput, DynamicFormProps, GeneralInput, inputEntryShape, TextAreaInput } from "../../../type/propTypes";
 
 const DynamicForm = ({
     fieldsets = null, //* if a form has differrent fieldsets

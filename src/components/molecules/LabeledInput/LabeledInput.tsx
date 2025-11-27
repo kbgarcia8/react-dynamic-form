@@ -1,9 +1,9 @@
 import React from "react";
 import * as Styled from './LabeledInput.styles';
-import Label from "@components/atoms/Label";
-import Input from "@components/atoms/Input";
-import Button from "@components/atoms/Button";
-import type { LabeledInputProps, GeneralInput } from "@type/propTypes";
+import Label from "../../atoms/Label";
+import Input from "../../atoms/Input";
+import Button from "../../atoms/Button";
+import type { LabeledInputProps, GeneralInput } from "../../../type/propTypes";
 
 const LabeledInput = (props:React.PropsWithChildren<LabeledInputProps>) => {
     const { className,

@@ -1,5 +1,5 @@
-import type { Theme } from "@type/constantTypes"
-import { asColor } from "@utils/utils";
+import type { Theme } from "../type/constantTypes"
+import { asColor } from "../utils/utils";
 
 export const breakpoints:Record<string, string> ={
     mobile: '320px', //Small iPhone SE & Medium: iPhone 12-15

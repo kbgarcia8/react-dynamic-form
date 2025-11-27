@@ -1,8 +1,8 @@
 import React from "react";
 import * as Styled from './NestedEditableOptopn.styles';
-import Input from "@components/atoms/Input";
-import type { NestedEditableOptionProps } from "@type/propTypes";
-import Button from "@components/atoms/Button";
+import Input from "../..//atoms/Input";
+import type { NestedEditableOptionProps } from "../../../type/propTypes";
+import Button from "../../atoms/Button";
 
 const NestedEditableOption = ({
     legend,

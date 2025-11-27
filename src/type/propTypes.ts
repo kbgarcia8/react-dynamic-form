@@ -1,4 +1,4 @@
-import type { Theme } from '@type/constantTypes';
+import type { Theme } from './constantTypes';
 import type React from 'react';
 
 export interface themeContextValue {

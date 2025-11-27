@@ -1,7 +1,7 @@
 import React from "react";
-import * as Styled from './FormActionButtons.styles.js';
-import Button from "@components/atoms/Button";
-import type { FormActionButtonsProps } from "@type/propTypes";
+import * as Styled from './FormActionButtons.styles';
+import Button from "../..//atoms/Button";
+import type { FormActionButtonsProps } from "../../../type/propTypes";
 
 const FormActionButtons = ({
     id,

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { v } from '@styles/variables';
+import { v } from '../../../styles/variables';
 
 export const DefaultButton = styled.button`
     display: flex;

@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { v } from "@styles/variables";
-import type { LabelProps } from "@type/propTypes";
+import { v } from "../../../styles/variables";
+import type { LabelProps } from "../../../type/propTypes";
 
 export const DefaultLabel = styled.label<Pick<LabelProps, '$labelFlexDirection'>>`
     display: flex;

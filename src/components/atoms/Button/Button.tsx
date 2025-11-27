@@ -1,6 +1,6 @@
 import React from "react";
 import * as Styled from "./Button.styles";
-import type { ButtonProps } from "@type/propTypes";
+import type { ButtonProps } from "../../../type/propTypes";
 
 const Button = ({
     onClick,

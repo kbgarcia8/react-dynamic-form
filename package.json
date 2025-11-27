@@ -19,14 +19,22 @@
   },
   "license": "ISC",
   "author": "kbgarcia8",
-  "type": "module",
-  "main": "index.js",
+  "main": "./dist/dynamic-form.cjs.js",
+  "module": "./dist/dynamic-form.es.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
     "clear": "rm -rf dist",
-    "tscompile": "npm run clear && tsc"
+    "tscompile": "npm run clear && tsc",
+    "build": "npm run clear && vite build && tsc --emitDeclarationOnly",
+    "preview": "vite preview"
+  },
+  "peerDependencies": {
+    "react": ">=17.0.0",
+    "react-dom": ">=17.0.0"
   },
   "devDependencies": {
     "@types/node": "^24.10.1",

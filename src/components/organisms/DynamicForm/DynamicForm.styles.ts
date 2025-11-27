@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { v } from '@styles/variables';
+import { v } from '../../../styles/variables';
 
 export const FormLegend = styled.legend`
     font-size: ${v.spacing.medium};

@@ -24,6 +24,7 @@ export default defineConfig({
     lib: {
       entry: 'src/index.ts',       // * main export file of your components
       name: 'ReactDynamicForm',    // * global name if used in a <script> tag
+      formats: ["es", "cjs"],
       fileName: (format) => `react-dynamic-form.${format}.js`,
     },
     rollupOptions: {

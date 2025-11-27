@@ -1,4 +1,4 @@
-import type { ColorString } from "@utils/utils";
+import type { ColorString } from "../utils/utils";
 
 export interface constants {
   fonts: {

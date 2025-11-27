@@ -1,4 +1,4 @@
-import type { constants } from '@type/constantTypes';
+import type { constants } from '../type/constantTypes';
 
 export const v:constants = {
     fonts: {
