@@ -28,11 +28,12 @@ export default defineConfig({
       fileName: (format) => `react-dynamic-form.${format}.js`,
     },
     rollupOptions: {
-      external: ['react', 'react-dom'], // ? Prevents Vite from bundling React into your library. Why? Consumers already have React installed. Bundling React can cause duplicate React errors.
+      external: ['react', 'react-dom', 'styled-components'], // ? Prevents Vite from bundling React into your library. Why? Consumers already have React installed. Bundling React can cause duplicate React errors.
       output: {
         globals: {
           react: 'React',
           'react-dom': 'ReactDOM',
+          'styled-components': 'styled'
         },
       },
     },

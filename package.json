@@ -19,9 +19,16 @@
   },
   "license": "ISC",
   "author": "kbgarcia8",
-  "main": "./dist/dynamic-form.cjs.js",
-  "module": "./dist/dynamic-form.es.js",
+  "main": "./dist/react-dynamic-form.cjs.js",
+  "module": "./dist/react-dynamic-form.es.js",
   "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/react-dynamic-form.es.js",
+      "require": "./dist/react-dynamic-form.cjs.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
   "files": [
     "dist"
   ],
