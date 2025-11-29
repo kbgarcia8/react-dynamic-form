@@ -17,7 +17,7 @@ type dataAttributesType = Record<string, string|number|boolean> | undefined
 type ButtonType = 'button' | 'submit';
 
 export interface ButtonProps {
-    onClick: React.MouseEventHandler<HTMLButtonElement>;
+    onClick: React.MouseEventHandler<HTMLButtonElement> | undefined;
     id: string;
     buttonType: ButtonType;
     source?: string
@@ -33,7 +33,7 @@ const InputTypes = ['text', 'password', 'email', 'number', 'tel', 'url', 'search
 
 interface BaseInput {
     id: string;
-    onChange : React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+    onChange : React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> | undefined;
     isRequired: boolean;
     dataAttributes?: dataAttributesType;
     disabled?: boolean | undefined;
@@ -121,7 +121,7 @@ export interface NestedEditableOptionProps {
     legend: string;
     idx: number;
     editableInformation: EditableInformation[];
-    onChangeOfEditableOption: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+    onChangeOfEditableOption: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> | undefined;
     onClickSaveEdit: React.MouseEventHandler<HTMLButtonElement>;
     onClickCancelEdit: React.MouseEventHandler<HTMLButtonElement>;
     onClickDeleteEntry: React.MouseEventHandler<HTMLButtonElement>;
@@ -156,14 +156,31 @@ interface FieldsetShape {
     expandable: boolean;
 }
 
-export type DynamicFormProps = FormActionButtonsProps & LabeledInputProps & {
-    fieldsets: FieldsetShape[] | null;
+export type DynamicFormProps<T extends null, K extends boolean, E extends boolean> = FormActionButtonsProps & LabeledInputProps & {
+    fieldsets: FieldsetShape[] | null | T;
     id: string;
-    formInputs: inputEntryShape<boolean>[];
-    legendText?: string;
-    isExpandable: boolean;
-    labelAndInputContainerClass: string;
+    isExpandable: K;
     handleSubmitForm: React.FormEventHandler<HTMLFormElement>;
-    handleEditableInputEntryChange: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
-    handleAddingInputEntry: React.MouseEventHandler<HTMLButtonElement>;
-}
+} & (T extends null
+    ? {
+        formInputs: inputEntryShape<boolean>[];
+        legendText?: string;
+        labelAndInputContainerClass?: string;
+    } : {
+        formInputs?: never;
+        legendText?: never;
+        labelAndInputContainerClass?: never;
+    }
+) & (E extends true
+    ? {
+        handleEditableInputEntryChange: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+    } : {
+        handleEditableInputEntryChange?: never;
+    }
+) & (K extends true
+    ? {
+        handleAddingInputEntry: React.MouseEventHandler<HTMLButtonElement>;
+    } : {
+        handleAddingInputEntry?: never;
+    }
+)

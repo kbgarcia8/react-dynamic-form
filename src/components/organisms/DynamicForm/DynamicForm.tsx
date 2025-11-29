@@ -6,10 +6,10 @@ import FormActionButtons from "../../molecules/FormActionButtons";
 import * as Styled from "./DynamicForm.styles";
 import type { CheckedInput, DynamicFormProps, GeneralInput, inputEntryShape, TextAreaInput } from "../../../type/propTypes";
 
-const DynamicForm = ({
+const DynamicForm = <T extends null, K extends boolean = false, E extends boolean = false>({
     fieldsets = null, //* if a form has differrent fieldsets
     legendText, //* if form has no fieldsets, depends if you have fieldset for solo form
-    isExpandable = false, //* if form has no fieldsets this is default to false - to add inputs
+    isExpandable, //* if form has no fieldsets this is default to false - to add inputs
     id,
     formInputs, //* object that contains the input fields information to make it reusable
     labelAndInputContainerClass,
@@ -32,7 +32,7 @@ const DynamicForm = ({
     handleEdit,
     className,
     children //* if there are nodes to be inserted after submit/edit/cancel buttons usually in login or signup forms
-}:React.PropsWithChildren<DynamicFormProps>) => {
+}:React.PropsWithChildren<DynamicFormProps<T, K,E>>) => {
     return (
         <Styled.Form id={`${id}-form`} className={className} onSubmit={handleSubmitForm}>
             {fieldsets
@@ -50,6 +50,7 @@ const DynamicForm = ({
                                     labelClass={labelClass}
                                     inputClass={inputClass}
                                     idx={inputIndex}
+                                    className={labelAndInputContainerClass}
                                 />
                                 )}
 
@@ -60,6 +61,7 @@ const DynamicForm = ({
                                     labelClass={labelClass}
                                     inputClass={inputClass}
                                     idx={inputIndex}
+                                    className={labelAndInputContainerClass}
                                 />
                                 )}
 
@@ -72,6 +74,7 @@ const DynamicForm = ({
                                     labelClass={labelClass}
                                     inputClass={inputClass}
                                     idx={inputIndex}
+                                    className={labelAndInputContainerClass}
                                 />
                                 )}
                                 {/* For editable data e.g. address entry, education entry */}
@@ -109,6 +112,7 @@ const DynamicForm = ({
                                     labelClass={labelClass}
                                     inputClass={inputClass}
                                     idx={inputIndex}
+                                    className={labelAndInputContainerClass}
                                 />
                                 )}
 
@@ -119,6 +123,7 @@ const DynamicForm = ({
                                     labelClass={labelClass}
                                     inputClass={inputClass}
                                     idx={inputIndex}
+                                    className={labelAndInputContainerClass}
                                 />
                                 )}
 
@@ -131,6 +136,7 @@ const DynamicForm = ({
                                     labelClass={labelClass}
                                     inputClass={inputClass}
                                     idx={inputIndex}
+                                    className={labelAndInputContainerClass}
                                 />
                                 )}
                                 {/*For editable data e.g. address entry, education entry*/}
