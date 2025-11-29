@@ -1,5 +1,5 @@
 {
-  "name": "react-dynamic-form",
+  "name": "@kbgarcia8/react-dynamic-form",
   "version": "1.0.0",
   "description": "A form that can be nested with editable, expandable and flexible input-forms",
   "keywords": [
@@ -22,11 +22,12 @@
   "main": "./dist/react-dynamic-form.cjs.js",
   "module": "./dist/react-dynamic-form.es.js",
   "types": "./dist/index.d.ts",
+  "sideEffects": false,
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/react-dynamic-form.es.js",
-      "require": "./dist/react-dynamic-form.cjs.js",
-      "types": "./dist/index.d.ts"
+      "require": "./dist/react-dynamic-form.cjs.js"
     }
   },
   "files": [
@@ -35,25 +36,22 @@
   "scripts": {
     "dev": "vite",
     "clear": "rm -rf dist",
-    "tscompile": "npm run clear && tsc",
-    "build": "npm run clear && vite build && tsc --emitDeclarationOnly",
+    "tscompile": "pnpm run clear && tsc",
+    "build": "pnpm run clear && vite build && tsc --emitDeclarationOnly",
     "preview": "vite preview"
   },
   "peerDependencies": {
     "react": ">=17.0.0",
-    "react-dom": ">=17.0.0"
+    "react-dom": ">=17.0.0",
+    "styled-components": ">=6"
   },
   "devDependencies": {
     "@types/node": "^24.10.1",
-    "@types/react": "^19.2.6",
+    "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.1",
+    "styled-components": "^6.1.19",
     "typescript": "^5.9.3",
     "vite": "^7.2.4"
-  },
-  "dependencies": {
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
-    "styled-components": "^6.1.19"
   }
 }
