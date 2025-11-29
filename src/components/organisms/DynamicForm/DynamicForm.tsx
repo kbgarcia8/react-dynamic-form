@@ -74,7 +74,7 @@ const DynamicForm = ({
                                     idx={inputIndex}
                                 />
                                 )}
-                                //* For editable data e.g. address entry, education entry
+                                {/* For editable data e.g. address entry, education entry */}
                                 {(input.editable && input.editing) && <NestedEditableOption
                                     legend={`${fieldset.legend} ${inputIndex+1}`}
                                     idx={inputIndex}
@@ -133,7 +133,7 @@ const DynamicForm = ({
                                     idx={inputIndex}
                                 />
                                 )}
-                                //*For editable data e.g. address entry, education entry
+                                {/*For editable data e.g. address entry, education entry*/}
                                 {(input.editable && input.editing) && <NestedEditableOption
                                     legend={`${legendText} ${inputIndex+1}`}
                                     idx={inputIndex}

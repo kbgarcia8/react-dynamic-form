@@ -91,7 +91,7 @@ const LabeledInput = (props:React.PropsWithChildren<LabeledInputProps>) => {
                     </>
                 )
             })()}
-            // * Radio inputs usually have labels next to them
+            {/* Radio inputs usually have labels next to them */}
             {isEditable && <Styled.EditableInputButtonContainer className={"input-edit-buttons"}>
                     <Button id={`editable-${id}-edit-btn`} svg={editIcon} buttonType={"button"} onClick={onClickEdit} className={`edit-radio-${idx}`} dataAttributes={dataAttributes}/>
                     <Button id={`editable-${id}-delete-btn`} svg={deleteIcon} buttonType={"button"} onClick={onClickDelete} className={`delete-radio-${idx}`} dataAttributes={dataAttributes}/>
