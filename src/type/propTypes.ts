@@ -31,7 +31,7 @@ export interface ButtonProps {
 
 const InputTypes = ['text', 'password', 'email', 'number', 'tel', 'url', 'search', 'date', 'file', 'hidden'] as const;
 
-interface BaseInput {
+export interface BaseInput {
     id: string;
     onChange : React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> | undefined;
     isRequired: boolean;
@@ -111,7 +111,7 @@ export interface FormActionButtonsProps {
     handleDelete: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-interface EditableInformation {
+export interface EditableInformation {
     name: string;
     info: string;
     type: typeof InputTypes[number];
@@ -149,7 +149,7 @@ export type inputEntryShape<T extends boolean> = LabeledInputProps & {
         onClickCancel?: never;
     })
 
-interface FieldsetShape {
+export interface FieldsetShape {
     legend: string;
     inputs: inputEntryShape<boolean>[];
     height: string;

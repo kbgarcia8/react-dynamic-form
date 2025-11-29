@@ -4,7 +4,8 @@
 ### Added
 - Test Run of NPM Publish
 
-## [1.0.3] - 2025-11-30
+## [1.0.3] - [1.0.5] - 2025-11-30
 ### Added
 - Added conditional typing via generics to DynamicFormProps
 - Enabled generic-based prop support in DynamicFormProps
+- Export of types
