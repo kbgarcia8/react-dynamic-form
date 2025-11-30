@@ -1,15 +1,16 @@
 # Changelog
 
-## [1.0.1] - [1.0.2] - 2025-11-29
-### Added
+## [1.0.1] - 2025-11-29
 - Test Run of NPM Publish
 
-## [1.0.3] - [1.0.6] - 2025-11-30
-### Added
-- Added conditional typing via generics to DynamicFormProps
-- Enabled generic-based prop support in DynamicFormProps
-- Export of types
+## [1.0.2] - [1.0.7] - 2025-11-30
+### Summary of Changes
+### Added/Fixed
+- Bug and alignment fixes
 
-## [1.0.7] - 2025-11-30
-### Fixes
-- Removed generic-based prop support in DynamicFormProps causing TS error
+## [1.0.9] - 2025-11-30
+### Summary of Changes
+### Added/Fixed
+- Added conditional typing via union discrminitation to DynamicFormProps
+- Export of types
+- Made ref optional in inputs

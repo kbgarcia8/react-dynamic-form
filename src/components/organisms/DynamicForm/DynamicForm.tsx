@@ -78,7 +78,7 @@ const DynamicForm = ({
                                 />
                                 )}
                                 {/* For editable data e.g. address entry, education entry */}
-                                {(input.editable && input.editing) && <NestedEditableOption
+                                {(input.isEditable && input.editing) && <NestedEditableOption
                                     legend={`${fieldset.legend} ${inputIndex+1}`}
                                     idx={inputIndex}
                                     editableInformation={input?.editableInformation}
@@ -89,10 +89,10 @@ const DynamicForm = ({
                                 />}
                                 </React.Fragment>
                             ))
-                            : (fieldset.expandable ? <Styled.FieldsetNoEntryMessage>{`No entry yet on ${fieldset.legend}. Click "+" button to add entry.`}</Styled.FieldsetNoEntryMessage> : "")
+                            : (fieldset.isExpandable ? <Styled.FieldsetNoEntryMessage>{`No entry yet on ${fieldset.legend}. Click "+" button to add entry.`}</Styled.FieldsetNoEntryMessage> : "")
                             }
                         </Styled.FormFieldset>
-                        {fieldset.expandable && 
+                        {fieldset.isExpandable && 
                             <Styled.ButtonContainer className={"add-input-button-space"}>
                                 <Button id={`expand-${fieldset.legend}-inputs`} buttonType={"button"} text={"+"} onClick={handleAddingInputEntry} className={`add-input-entry`}/>
                             </Styled.ButtonContainer>
@@ -140,7 +140,7 @@ const DynamicForm = ({
                                 />
                                 )}
                                 {/*For editable data e.g. address entry, education entry*/}
-                                {(input.editable && input.editing) && <NestedEditableOption
+                                {(input.isEditable && input.editing) && <NestedEditableOption
                                     legend={`${legendText} ${inputIndex+1}`}
                                     idx={inputIndex}
                                     editableInformation={input?.editableInformation}

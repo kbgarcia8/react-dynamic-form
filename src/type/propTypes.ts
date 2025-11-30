@@ -87,7 +87,7 @@ export type EditableInputProps = {
     deleteIcon?: React.ReactNode;
     onClickDelete: React.MouseEventHandler<HTMLButtonElement>;
     idx?: number;
-    ref: React.Ref<HTMLInputElement | HTMLTextAreaElement>;
+    ref?: React.Ref<HTMLInputElement | HTMLTextAreaElement>;
 };
 
 export type LabeledInputProps = 
@@ -130,7 +130,7 @@ export interface NestedEditableOptionProps {
 export type inputEntryShape<T extends boolean> = LabeledInputProps & {
     uniqueClass?: string;
     editing: boolean;
-    editable: T; 
+    isEditable: T; 
     editableInformation: EditableInformation[];
 } & (T extends true
     ? {
@@ -153,7 +153,7 @@ export interface FieldsetShape {
     legend: string;
     inputs: inputEntryShape<boolean>[];
     height: string;
-    expandable: boolean;
+    isExpandable: boolean;
 }
 
 type ConditionalEditable<P> = //? This can be technique to know a specific property value that will make other props required
@@ -166,27 +166,28 @@ type ConditionalEditable<P> = //? This can be technique to know a specific prope
     };
 
 export type DynamicFormProps =
-  LabeledInputProps &
-  FormActionButtonsProps & 
+  FormActionButtonsProps &
   (
-    | {
-        fieldsets: FieldsetShape[]; // must be an array
-        formInputs?: never;          // forbidden
+    | ({
+        fieldsets: FieldsetShape[];
+        formInputs?: never;
         legendText?: never;
         labelAndInputContainerClass?: never;
-      }
-    | {
-        fieldsets: null;             // explicitly null
-        formInputs: inputEntryShape<boolean>[]; // required
+      } & ConditionalEditable<LabeledInputProps>)
+    | ({
+        fieldsets: null;
+        formInputs: inputEntryShape<boolean>[];
         legendText?: string;
         labelAndInputContainerClass?: string;
-      }
+      } & LabeledInputProps & ConditionalEditable<LabeledInputProps>)
   ) &
-  ConditionalEditable<LabeledInputProps> &
   (
     | { isExpandable: true; handleAddingInputEntry: React.MouseEventHandler<HTMLButtonElement> }
     | { isExpandable: false; handleAddingInputEntry?: never }
   ) & {
     id: string;
     handleSubmitForm: React.FormEventHandler<HTMLFormElement>;
+    className?: string;
+    labelClass?: string;
+    inputClass?: string;
   };
