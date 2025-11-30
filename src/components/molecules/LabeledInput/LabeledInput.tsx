@@ -44,7 +44,7 @@ const LabeledInput = (props:React.PropsWithChildren<LabeledInputProps>) => {
                         value={value}
                         rows={rows}
                         cols={cols}
-                        {...dataAttributes}
+                        dataAttributes={dataAttributes}
                         className={inputClass}
                         ref={ref as React.Ref<HTMLTextAreaElement>}
                         disabled={disabled}
@@ -63,7 +63,7 @@ const LabeledInput = (props:React.PropsWithChildren<LabeledInputProps>) => {
                         value={value}
                         type={type}
                         isRequired={isRequired}
-                        {...dataAttributes}
+                        dataAttributes={dataAttributes}
                         className={inputClass}
                         ref={ref as React.Ref<HTMLInputElement>}
                         disabled={disabled}
@@ -85,7 +85,7 @@ const LabeledInput = (props:React.PropsWithChildren<LabeledInputProps>) => {
                     onChange={onChange}
                     disabled={disabled}
                     className={inputClass}
-                    {...dataAttributes}
+                    dataAttributes={dataAttributes}
                     />
                     <Label htmlFor={id} textLabel={textLabel} additionalInfo={additionalInfo} $labelFlexDirection={$labelFlexDirection} svg={svg} className={labelClass} />
                     </>

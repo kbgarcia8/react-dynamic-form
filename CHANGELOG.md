@@ -14,3 +14,8 @@
 - Added conditional typing via union discrminitation to DynamicFormProps
 - Export of types
 - Made ref optional in inputs
+
+## [1.1.0] - [1.1.3] - 2025-12-01
+### Summary of Changes
+### Fixed
+- Passing of dataAttributes on molecule component above must not be spread
