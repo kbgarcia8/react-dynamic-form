@@ -4,9 +4,9 @@ import LabeledInput from "../../molecules/LabeledInput";
 import NestedEditableOption from "../..//molecules/NestedEditableOption";
 import FormActionButtons from "../../molecules/FormActionButtons";
 import * as Styled from "./DynamicForm.styles";
-import type { CheckedInput, DynamicFormProps, GeneralInput, inputEntryShape, TextAreaInput } from "../../../type/propTypes";
+import type { CheckedInput, DynamicFormProps, GeneralInput, inputEntryShape, TextAreaInput, FieldsetShape } from "../../../type/propTypes";
 
-const DynamicForm = <T extends null, K extends boolean = false, E extends boolean = false>({
+const DynamicForm = ({
     fieldsets = null, //* if a form has differrent fieldsets
     legendText, //* if form has no fieldsets, depends if you have fieldset for solo form
     isExpandable, //* if form has no fieldsets this is default to false - to add inputs
@@ -32,7 +32,7 @@ const DynamicForm = <T extends null, K extends boolean = false, E extends boolea
     handleEdit,
     className,
     children //* if there are nodes to be inserted after submit/edit/cancel buttons usually in login or signup forms
-}:React.PropsWithChildren<DynamicFormProps<T, K,E>>) => {
+}:React.PropsWithChildren<DynamicFormProps>) => {
     return (
         <Styled.Form id={`${id}-form`} className={className} onSubmit={handleSubmitForm}>
             {fieldsets
@@ -102,7 +102,7 @@ const DynamicForm = <T extends null, K extends boolean = false, E extends boolea
                 : <Styled.FieldsetWrapper>
                     <Styled.FormFieldset id={`${id}-form-fieldset`} className="form-fieldset">
                         {legendText && <Styled.FormLegend>{legendText}</Styled.FormLegend>}
-                        {formInputs.length !== 0
+                        {!fieldsets && formInputs && formInputs.length !== 0
                         ? formInputs.map((input, inputIndex) => (
                             <React.Fragment key={`form-${id}-${inputIndex}`}>
                                 {input.type === "textarea" && (

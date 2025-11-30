@@ -156,31 +156,37 @@ export interface FieldsetShape {
     expandable: boolean;
 }
 
-export type DynamicFormProps<T extends null, K extends boolean, E extends boolean> = FormActionButtonsProps & LabeledInputProps & {
-    fieldsets: FieldsetShape[] | null | T;
-    id: string;
-    isExpandable: K;
-    handleSubmitForm: React.FormEventHandler<HTMLFormElement>;
-} & (T extends null
-    ? {
-        formInputs: inputEntryShape<boolean>[];
-        legendText?: string;
-        labelAndInputContainerClass?: string;
-    } : {
-        formInputs?: never;
-        legendText?: never;
-        labelAndInputContainerClass?: never;
-    }
-) & (E extends true
+type ConditionalEditable<P> = //? This can be technique to know a specific property value that will make other props required
+    P extends { isEditable: true }
     ? {
         handleEditableInputEntryChange: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
-    } : {
+    }
+    : {
         handleEditableInputEntryChange?: never;
-    }
-) & (K extends true
-    ? {
-        handleAddingInputEntry: React.MouseEventHandler<HTMLButtonElement>;
-    } : {
-        handleAddingInputEntry?: never;
-    }
-)
+    };
+
+export type DynamicFormProps =
+  LabeledInputProps &
+  FormActionButtonsProps & 
+  (
+    | {
+        fieldsets: FieldsetShape[]; // must be an array
+        formInputs?: never;          // forbidden
+        legendText?: never;
+        labelAndInputContainerClass?: never;
+      }
+    | {
+        fieldsets: null;             // explicitly null
+        formInputs: inputEntryShape<boolean>[]; // required
+        legendText?: string;
+        labelAndInputContainerClass?: string;
+      }
+  ) &
+  ConditionalEditable<LabeledInputProps> &
+  (
+    | { isExpandable: true; handleAddingInputEntry: React.MouseEventHandler<HTMLButtonElement> }
+    | { isExpandable: false; handleAddingInputEntry?: never }
+  ) & {
+    id: string;
+    handleSubmitForm: React.FormEventHandler<HTMLFormElement>;
+  };
