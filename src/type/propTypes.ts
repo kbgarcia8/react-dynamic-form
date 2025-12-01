@@ -172,7 +172,6 @@ export type DynamicFormProps =
         fieldsets: FieldsetShape[];
         formInputs?: never;
         legendText?: never;
-        labelAndInputContainerClass?: never;
       } & ConditionalEditable<LabeledInputProps>)
     | ({
         fieldsets: null;
@@ -190,4 +189,5 @@ export type DynamicFormProps =
     className?: string;
     labelClass?: string;
     inputClass?: string;
+    labelAndInputContainerClass?: string;
   };

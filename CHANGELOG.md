@@ -19,3 +19,12 @@
 ### Summary of Changes
 ### Fixed
 - Passing of dataAttributes on molecule component above must not be spread
+
+### [1.1.4] - 2025-12-02
+### Summary of Changes
+### Removed
+- Removed never type for labelAndInputContainerClass if fieldset not null
+
+### Added
+- Added labelAndInputContainerClass as conditional prop in DynamicFormProps
+- Added className FieldsetWrapper for distinct selector when styling using styled-components

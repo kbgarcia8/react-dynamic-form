@@ -37,8 +37,8 @@ const DynamicForm = ({
         <Styled.Form id={`${id}-form`} className={className} onSubmit={handleSubmitForm}>
             {fieldsets
                 ? fieldsets.map((fieldset, fieldsetIdx) => (
-                    <Styled.FieldsetWrapper key={`${fieldset.legend}-${fieldsetIdx}`} >
-                        <Styled.FormFieldset id={`${id}-form-fieldset-${fieldsetIdx}`} className="form-fieldset">
+                    <Styled.FieldsetWrapper key={`${fieldset.legend}-${fieldsetIdx}`} className={`${id}-fieldset-wrapper`}>
+                        <Styled.FormFieldset id={`${id}-form-fieldset-${fieldsetIdx}`} className={`${fieldset.legend}-fieldset`}>
                             {fieldset.legend && <Styled.FormLegend>{fieldset.legend}</Styled.FormLegend>}
                             {fieldset['inputs'].length !== 0
                             ? fieldset['inputs'].map((input, inputIndex) => (
@@ -99,8 +99,8 @@ const DynamicForm = ({
                         }
                     </Styled.FieldsetWrapper>
                 ))
-                : <Styled.FieldsetWrapper>
-                    <Styled.FormFieldset id={`${id}-form-fieldset`} className="form-fieldset">
+                : <Styled.FieldsetWrapper className={`${id}-fieldset-wrapper`}>
+                    <Styled.FormFieldset id={`${id}-form-fieldset`} className={`${legendText}-fieldset`}>
                         {legendText && <Styled.FormLegend>{legendText}</Styled.FormLegend>}
                         {!fieldsets && formInputs && formInputs.length !== 0
                         ? formInputs.map((input, inputIndex) => (
