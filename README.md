@@ -180,5 +180,11 @@ function App() {
 | `onClick` | `() => void` | —        | Click event handler             |
 
 #### For more information on props types see:
-[![propTypes](https://img.shields.io/badge/propTypes-dist%2Ftype%2FpropTypes.d.ts-blue?link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2F%40kbgarcia8%2Freact-dynamic-form%3FactiveTab%3Dcode
+[![propTypes](https://img.shields.io/badge/dist%2Ftype%2FpropTypes.d.ts-blue?link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2F%40kbgarcia8%2Freact-dynamic-form%3FactiveTab%3Dcode
 )](https://www.npmjs.com/package/@kbgarcia8/react-dynamic-form?activeTab=code)
+
+Note that types/interfaces are also exported via npm package and can be imported as shown below:
+
+```tsx
+import type { FieldsetShape, inputEntryShape } from '@kbgarcia8/react-dynamic-form'
+```
