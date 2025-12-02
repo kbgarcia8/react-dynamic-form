@@ -7,31 +7,28 @@ import * as Styled from "./DynamicForm.styles";
 import type { CheckedInput, DynamicFormProps, GeneralInput, inputEntryShape, TextAreaInput, FieldsetShape } from "../../../type/propTypes";
 
 const DynamicForm = ({
-    fieldsets = null, //* if a form has differrent fieldsets
-    legendText, //* if form has no fieldsets, depends if you have fieldset for solo form
-    isExpandable, //* if form has no fieldsets this is default to false - to add inputs
+    fieldsets = null, 
+    legendText, 
+    isExpandable, 
     id,
-    formInputs, //* object that contains the input fields information to make it reusable
+    formInputs, 
     labelAndInputContainerClass,
     labelClass,
     inputClass,
-    handleEditableInputEntryChange, //* handles change on editable inputs
+    handleEditableInputEntryChange, 
     handleAddingInputEntry,
     hasSubmit = false,
-    hasCancel = false,
-    hasDelete = false,
-    hasEdit = false,
     submitText,
-    handleSubmitForm,
     handleSubmit,
+    hasReset = false,
+    resetText,
+    handleReset,
+    hasCancel = false,
     cancelText,
     handleCancel,
-    deleteText,
-    handleDelete,
-    editText,
-    handleEdit,
+    handleSubmitForm,
     className,
-    children //* if there are nodes to be inserted after submit/edit/cancel buttons usually in login or signup forms
+    children 
 }:React.PropsWithChildren<DynamicFormProps>) => {
     return (
         <Styled.Form id={`${id}-form`} className={className} onSubmit={handleSubmitForm}>
@@ -39,7 +36,7 @@ const DynamicForm = ({
                 ? fieldsets.map((fieldset, fieldsetIdx) => (
                     <Styled.FieldsetWrapper key={`${fieldset.legend}-${fieldsetIdx}`} className={`${id}-fieldset-wrapper`}>
                         <Styled.FormFieldset id={`${id}-form-fieldset-${fieldsetIdx}`} className={`${fieldset.legend}-fieldset`}>
-                            {fieldset.legend && <Styled.FormLegend>{fieldset.legend}</Styled.FormLegend>}
+                            {fieldset.legend && <Styled.FormLegend className={`${fieldset.legend}-legend`}>{fieldset.legend}</Styled.FormLegend>}
                             {fieldset['inputs'].length !== 0
                             ? fieldset['inputs'].map((input, inputIndex) => (
                                 <React.Fragment key={`form-${id}-${inputIndex}`}>
@@ -50,7 +47,7 @@ const DynamicForm = ({
                                     labelClass={labelClass}
                                     inputClass={inputClass}
                                     idx={inputIndex}
-                                    className={labelAndInputContainerClass}
+                                    className={`${labelAndInputContainerClass} ${input?.uniqueClass}`}
                                 />
                                 )}
 
@@ -61,7 +58,7 @@ const DynamicForm = ({
                                     labelClass={labelClass}
                                     inputClass={inputClass}
                                     idx={inputIndex}
-                                    className={labelAndInputContainerClass}
+                                    className={`${labelAndInputContainerClass} ${input?.uniqueClass}`}
                                 />
                                 )}
 
@@ -74,10 +71,9 @@ const DynamicForm = ({
                                     labelClass={labelClass}
                                     inputClass={inputClass}
                                     idx={inputIndex}
-                                    className={labelAndInputContainerClass}
+                                    className={`${labelAndInputContainerClass} ${input?.uniqueClass}`}
                                 />
                                 )}
-                                {/* For editable data e.g. address entry, education entry */}
                                 {(input.isEditable && input.editing) && <NestedEditableOption
                                     legend={`${fieldset.legend} ${inputIndex+1}`}
                                     idx={inputIndex}
@@ -101,7 +97,7 @@ const DynamicForm = ({
                 ))
                 : <Styled.FieldsetWrapper className={`${id}-fieldset-wrapper`}>
                     <Styled.FormFieldset id={`${id}-form-fieldset`} className={`${legendText}-fieldset`}>
-                        {legendText && <Styled.FormLegend>{legendText}</Styled.FormLegend>}
+                        {legendText && <Styled.FormLegend className={`${legendText}-legend`}>{legendText}</Styled.FormLegend>}
                         {!fieldsets && formInputs && formInputs.length !== 0
                         ? formInputs.map((input, inputIndex) => (
                             <React.Fragment key={`form-${id}-${inputIndex}`}>
@@ -112,7 +108,7 @@ const DynamicForm = ({
                                     labelClass={labelClass}
                                     inputClass={inputClass}
                                     idx={inputIndex}
-                                    className={labelAndInputContainerClass}
+                                    className={`${labelAndInputContainerClass} ${input?.uniqueClass}`}
                                 />
                                 )}
 
@@ -123,7 +119,7 @@ const DynamicForm = ({
                                     labelClass={labelClass}
                                     inputClass={inputClass}
                                     idx={inputIndex}
-                                    className={labelAndInputContainerClass}
+                                    className={`${labelAndInputContainerClass} ${input?.uniqueClass}`}
                                 />
                                 )}
 
@@ -136,10 +132,9 @@ const DynamicForm = ({
                                     labelClass={labelClass}
                                     inputClass={inputClass}
                                     idx={inputIndex}
-                                    className={labelAndInputContainerClass}
+                                    className={`${labelAndInputContainerClass} ${input?.uniqueClass}`}
                                 />
                                 )}
-                                {/*For editable data e.g. address entry, education entry*/}
                                 {(input.isEditable && input.editing) && <NestedEditableOption
                                     legend={`${legendText} ${inputIndex+1}`}
                                     idx={inputIndex}
@@ -164,15 +159,12 @@ const DynamicForm = ({
                 hasSubmit={hasSubmit}
                 submitText={submitText}
                 handleSubmit={handleSubmit}
-                hasEdit={hasEdit}
-                editText={editText}
-                handleEdit={handleEdit}
+                hasReset={hasReset}
+                resetText={resetText}
+                handleReset={handleReset}
                 hasCancel={hasCancel}
                 cancelText={cancelText}
                 handleCancel={handleCancel}
-                hasDelete={hasDelete}
-                deleteText={deleteText}
-                handleDelete={handleDelete}
             />
             <Styled.ChildrenContainer className={"children-container"}>
                 {children}

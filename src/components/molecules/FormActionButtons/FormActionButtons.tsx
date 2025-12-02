@@ -8,22 +8,18 @@ const FormActionButtons = ({
     hasSubmit,
     submitText,
     handleSubmit,
-    hasEdit,
-    editText,
-    handleEdit,
+    hasReset,
+    resetText,
+    handleReset,
     hasCancel,
     cancelText,
     handleCancel,
-    hasDelete,
-    deleteText,
-    handleDelete,
 }:FormActionButtonsProps) => {
     return(
         <Styled.ButtonContainer className={"form-main-button-container"}>
             {hasSubmit && <Button id={`form-${id}-submit`} buttonType={"submit"} text={submitText ?? "Submit"} onClick={handleSubmit} className={"submit-form-btn"}/>}
-            {hasEdit && <Button id={`form-${id}-edit`} buttonType={"button"} text={editText ?? "Edit"} onClick={handleEdit} className={"edit-form-btn"}/>}
+            {hasReset && <Button id={`form-${id}-edit`} buttonType={"button"} text={resetText ?? "Reset"} onClick={handleReset} className={"reset-form-btn"}/>}
             {hasCancel && <Button id={`form-${id}-cancel`} buttonType={"button"} text={cancelText ?? "Cancel"} onClick={handleCancel} className={"cancel-form-btn"}/>}                
-            {hasDelete && <Button id={`form-${id}-delete`} buttonType={"button"} text={deleteText ?? "Delete"} onClick={handleDelete} className={"delete-form-btn"}/>}
         </Styled.ButtonContainer>
     )
 };

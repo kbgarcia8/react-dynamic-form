@@ -100,15 +100,12 @@ export interface FormActionButtonsProps {
     hasSubmit: boolean;
     submitText: string;
     handleSubmit: React.MouseEventHandler<HTMLButtonElement>;
-    hasEdit: boolean;
-    editText: string;
-    handleEdit: React.MouseEventHandler<HTMLButtonElement>;
+    hasReset: boolean;
+    resetText: string;
+    handleReset: React.MouseEventHandler<HTMLButtonElement>;
     hasCancel: boolean;
     cancelText: string;
     handleCancel: React.MouseEventHandler<HTMLButtonElement>;
-    hasDelete: boolean;
-    deleteText: string;
-    handleDelete: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 export interface EditableInformation {
@@ -129,11 +126,11 @@ export interface NestedEditableOptionProps {
 
 export type inputEntryShape<T extends boolean> = LabeledInputProps & {
     uniqueClass?: string;
-    editing: boolean;
     isEditable: T; 
-    editableInformation: EditableInformation[];
 } & (T extends true
     ? {
+        editableInformation: EditableInformation[];
+        editing: boolean;
         onClickEdit: React.MouseEventHandler<HTMLButtonElement>;
         editIcon: React.ReactNode;
         onClickDelete: React.MouseEventHandler<HTMLButtonElement>;
@@ -141,6 +138,8 @@ export type inputEntryShape<T extends boolean> = LabeledInputProps & {
         onClickSave: React.MouseEventHandler<HTMLButtonElement>;
         onClickCancel: React.MouseEventHandler<HTMLButtonElement>;
     } : {
+        editableInformation?: never;
+        editing?: never;
         onClickEdit?: never;
         editIcon?: never;
         onClickDelete?: never;
