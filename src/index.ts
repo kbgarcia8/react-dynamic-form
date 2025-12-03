@@ -1,3 +1,5 @@
+import "./styles/styled"; // <-- Forces augmentation to load for the consumer
+
 export { default as DynamicForm } from "./components/organisms/DynamicForm";
 export { ThemeContextProvider } from "./context/ThemeContextWrapper";
 export { default as ThemeContext } from "./context/ThemeContext";

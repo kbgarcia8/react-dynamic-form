@@ -1,5 +1,4 @@
 {
-  // Visit https://aka.ms/tsconfig to read more about this file
   "compilerOptions": {
     "baseUrl": "./src",
     "paths": {
@@ -9,29 +8,31 @@
       "@fonts/*": ["fonts/*"],
       "@styles/*": ["styles/*"],
       "@type/*": ["type/*"],
-      "@utils/*": ["utils/*"],
+      "@utils/*": ["utils/*"]
     },
+
     "target": "esnext",
     "module": "esnext",
     "moduleResolution": "bundler",
-    "types": [],
+
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
+
     "declaration": true,
-    "declarationDir": "dist",
     "emitDeclarationOnly": true,
     "outDir": "./dist",
+    "rootDir": "./src",
     "declarationMap": true,
+
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
-    // Recommended Options
     "strict": true,
     "jsx": "react-jsx",
     "verbatimModuleSyntax": true,
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
-    "skipLibCheck": true,
+    "skipLibCheck": true
   },
   "include": ["src"]
 }
