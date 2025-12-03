@@ -3,9 +3,9 @@ import * as Styled from './LabeledInput.styles';
 import Label from "../../atoms/Label";
 import Input from "../../atoms/Input";
 import Button from "../../atoms/Button";
-import type { LabeledInputProps, GeneralInput } from "../../../type/propTypes";
+import type { LabeledCheckboxOrRadio, LabeledTextLike, GeneralInput } from "../../../type/propTypes";
 
-const LabeledInput = (props:React.PropsWithChildren<LabeledInputProps>) => {
+const LabeledInput = (props:React.PropsWithChildren<LabeledCheckboxOrRadio | LabeledTextLike>) => {
     const { className,
     type,
     id,

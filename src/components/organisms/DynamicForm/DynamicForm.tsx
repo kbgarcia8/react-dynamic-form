@@ -51,17 +51,6 @@ const DynamicForm = ({
                                 />
                                 )}
 
-                                {(input.type === "radio" || input.type === "checkbox") && (
-                                <LabeledInput
-                                    {...input}
-                                    id={input.id ?? `${fieldset.legend}-input`}
-                                    labelClass={labelClass}
-                                    inputClass={inputClass}
-                                    idx={inputIndex}
-                                    className={`${labelAndInputContainerClass} ${input?.uniqueClass}`}
-                                />
-                                )}
-
                                 {input.type !== "textarea" &&
                                 input.type !== "radio" &&
                                 input.type !== "checkbox" && (
@@ -74,15 +63,28 @@ const DynamicForm = ({
                                     className={`${labelAndInputContainerClass} ${input?.uniqueClass}`}
                                 />
                                 )}
-                                {(input.isEditable && input.editing) && <NestedEditableOption
-                                    legend={`${fieldset.legend}`}
-                                    idx={inputIndex}
-                                    editableInformation={input?.editableInformation}
-                                    onChangeOfEditableOption={handleEditableInputEntryChange}
-                                    onClickSaveEdit={input?.onClickSave}
-                                    onClickCancelEdit={input?.onClickCancel}
-                                    onClickDeleteEntry={input?.onClickDelete}
-                                />}
+
+                                {(input.type === "radio" || input.type === "checkbox") && (
+                                <>
+                                    <LabeledInput
+                                        {...input}
+                                        id={input.id ?? `${fieldset.legend}-input`}
+                                        labelClass={labelClass}
+                                        inputClass={inputClass}
+                                        idx={inputIndex}
+                                        className={`${labelAndInputContainerClass} ${input?.uniqueClass}`}
+                                    />
+                                    {(input.editing && input.isEditable) && <NestedEditableOption
+                                        legend={`${fieldset.legend}`}
+                                        idx={inputIndex}
+                                        editableInformation={input?.editableInformation}
+                                        onChangeOfEditableOption={handleEditableInputEntryChange}
+                                        onClickSaveEdit={input?.onClickSave}
+                                        onClickCancelEdit={input?.onClickCancel}
+                                        onClickDeleteEntry={input?.onClickDelete}
+                                    />}
+                                </>
+                                )}
                                 </React.Fragment>
                             ))
                             : (fieldset.isExpandable ? <Styled.FieldsetNoEntryMessage>{`No entry yet on ${fieldset.legend}. Click "+" button to add entry.`}</Styled.FieldsetNoEntryMessage> : "")
@@ -112,17 +114,6 @@ const DynamicForm = ({
                                 />
                                 )}
 
-                                {(input.type === "radio" || input.type === "checkbox") && (
-                                <LabeledInput
-                                    {...input}
-                                    id={input.id ?? `${legendText}-input`}
-                                    labelClass={labelClass}
-                                    inputClass={inputClass}
-                                    idx={inputIndex}
-                                    className={`${labelAndInputContainerClass} ${input?.uniqueClass}`}
-                                />
-                                )}
-
                                 {input.type !== "textarea" &&
                                 input.type !== "radio" &&
                                 input.type !== "checkbox" && (
@@ -135,15 +126,28 @@ const DynamicForm = ({
                                     className={`${labelAndInputContainerClass} ${input?.uniqueClass}`}
                                 />
                                 )}
-                                {(input.isEditable && input.editing) && <NestedEditableOption
-                                    legend={`${legendText}`}
-                                    idx={inputIndex}
-                                    editableInformation={input?.editableInformation}
-                                    onChangeOfEditableOption={handleEditableInputEntryChange}
-                                    onClickSaveEdit={input?.onClickSave}
-                                    onClickCancelEdit={input?.onClickEdit}
-                                    onClickDeleteEntry={input?.onClickDelete}
-                                />}
+                                
+                                {(input.type === "radio" || input.type === "checkbox") && (
+                                <>
+                                    <LabeledInput
+                                        {...input}
+                                        id={input.id ?? `${legendText}-input`}
+                                        labelClass={labelClass}
+                                        inputClass={inputClass}
+                                        idx={inputIndex}
+                                        className={`${labelAndInputContainerClass} ${input?.uniqueClass}`}
+                                    />
+                                    {(input.editing && input.isEditable) && <NestedEditableOption
+                                        legend={`${legendText}`}
+                                        idx={inputIndex}
+                                        editableInformation={input?.editableInformation}
+                                        onChangeOfEditableOption={handleEditableInputEntryChange}
+                                        onClickSaveEdit={input?.onClickSave}
+                                        onClickCancelEdit={input?.onClickCancel}
+                                        onClickDeleteEntry={input?.onClickDelete}
+                                    />}
+                                </>
+                                )}
                             </React.Fragment>
                         ))
                         : (isExpandable ? (<Styled.FieldsetNoEntryMessage>{`No entry yet on ${legendText}. Please click "+" button to add`}</Styled.FieldsetNoEntryMessage>) : "")
