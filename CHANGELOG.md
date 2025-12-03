@@ -29,7 +29,7 @@
 - Added labelAndInputContainerClass as conditional prop in DynamicFormProps
 - Added className FieldsetWrapper for distinct selector when styling using styled-components
 
-### [1.1.5] - 2025-12-03
+### [1.1.6] - 2025-12-03
 ### Summary of Changes
 ### Removed
 - delete logics for DynamicForm
@@ -37,3 +37,8 @@
 ### Added
 - Changed edit logics to reset logics for DynamicForm
 - initialTheme and secondTheme props in ThemecontextProvider to allow override of theme
+
+### [1.1.7] - 2025-12-03
+### Summary of Changes
+### Fixes
+- Enclosed text information of label in a container to improve flex direction styling
