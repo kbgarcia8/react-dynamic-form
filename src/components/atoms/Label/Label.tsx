@@ -17,8 +17,10 @@ const Label = ({
             {(source || svg) && <Styled.LabelIconContainer className={"label-icon-container"}>
                 {source ? <img src={source} alt={`${htmlFor}-label-icon`} /> : svg ? svg : ''}
             </Styled.LabelIconContainer>}
-            <Styled.MainLabelText className={"main-label"}>{textLabel}</Styled.MainLabelText>
-            {additionalInfo && <Styled.LabelAdditionalInfo className={"additional-info"} >{additionalInfo}</Styled.LabelAdditionalInfo>}
+            <Styled.LabelTextContainer className={"label-text-container"}>
+                <Styled.MainLabelText className={"main-label"}>{textLabel}</Styled.MainLabelText>
+                {additionalInfo && <Styled.LabelAdditionalInfo className={"additional-info"} >{additionalInfo}</Styled.LabelAdditionalInfo>}
+            </Styled.LabelTextContainer>
             {children}
         </Styled.DefaultLabel>
     )

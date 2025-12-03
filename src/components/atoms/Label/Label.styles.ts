@@ -21,6 +21,14 @@ export const DefaultLabel = styled.label<Pick<LabelProps, '$labelFlexDirection'>
     }
 `;
 
+export const LabelTextContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: ${v.spacing.xxxsmall};
+`;
+
 export const MainLabelText = styled.span`
     font-weight: ${v.fontWeight.bolder};
 `;
