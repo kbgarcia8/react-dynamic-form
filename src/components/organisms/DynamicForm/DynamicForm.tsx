@@ -15,7 +15,7 @@ const DynamicForm = ({
     labelAndInputContainerClass,
     labelClass,
     inputClass,
-    handleEditableInputEntryChange, 
+    onChangeOfEditableOption, 
     handleAddingInputEntry,
     hasSubmit = false,
     submitText,
@@ -78,7 +78,7 @@ const DynamicForm = ({
                                         legend={`${fieldset.legend}`}
                                         idx={inputIndex}
                                         editableInformation={input?.editableInformation}
-                                        onChangeOfEditableOption={handleEditableInputEntryChange}
+                                        onChangeOfEditableOption={onChangeOfEditableOption}
                                         onClickSaveEdit={input?.onClickSave}
                                         onClickCancelEdit={input?.onClickCancel}
                                         onClickDeleteEntry={input?.onClickDelete}
@@ -141,7 +141,7 @@ const DynamicForm = ({
                                         legend={`${legendText}`}
                                         idx={inputIndex}
                                         editableInformation={input?.editableInformation}
-                                        onChangeOfEditableOption={handleEditableInputEntryChange}
+                                        onChangeOfEditableOption={onChangeOfEditableOption}
                                         onClickSaveEdit={input?.onClickSave}
                                         onClickCancelEdit={input?.onClickCancel}
                                         onClickDeleteEntry={input?.onClickDelete}

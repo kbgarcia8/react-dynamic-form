@@ -44,7 +44,7 @@
 - Enclosed text information of label in a container to improve flex direction styling
 - Fixed augmentation to override of DefaultTheme of styled components
 
-### [1.1.14] - [1.0.17] - 2025-12-03
+### [1.1.14] - [1.0.23] - 2025-12-03
 ### Summary of Changes
 ### Fixes/Adjustments
 - Used to fix redundant numbering in legend text of editable input options
