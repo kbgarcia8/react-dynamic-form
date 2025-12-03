@@ -75,7 +75,7 @@ const DynamicForm = ({
                                 />
                                 )}
                                 {(input.isEditable && input.editing) && <NestedEditableOption
-                                    legend={`${fieldset.legend} ${inputIndex+1}`}
+                                    legend={`${fieldset.legend}`}
                                     idx={inputIndex}
                                     editableInformation={input?.editableInformation}
                                     onChangeOfEditableOption={handleEditableInputEntryChange}
@@ -136,7 +136,7 @@ const DynamicForm = ({
                                 />
                                 )}
                                 {(input.isEditable && input.editing) && <NestedEditableOption
-                                    legend={`${legendText} ${inputIndex+1}`}
+                                    legend={`${legendText}`}
                                     idx={inputIndex}
                                     editableInformation={input?.editableInformation}
                                     onChangeOfEditableOption={handleEditableInputEntryChange}
