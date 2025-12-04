@@ -55,3 +55,8 @@
 ### Summary of Changes
 ### Fixes/Adjustments
 - Adjusted optional prop types in order to cater expected dynamic of several props if input is an editable option
+
+### [1.0.26] - 2025-12-05
+### Summary of Changes
+### Fixes/Adjustments
+- Changed type of save button in NestedEditableOption from submit to button to prevent submit of main form

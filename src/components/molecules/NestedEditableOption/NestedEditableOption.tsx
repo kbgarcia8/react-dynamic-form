@@ -35,7 +35,7 @@ const NestedEditableOption = ({
                 </Styled.LabelAndInputContainer>
             ))}                                            
             <Styled.ButtonContainer className={"editable-option-button-space"}>
-                <Button id={`editable-option-${idx}-submit`} buttonType={"submit"} text={"Save"} onClick={onClickSaveEdit} className={"editable-option-btn"} dataAttributes={{"data-index": idx}}/>
+                <Button id={`editable-option-${idx}-submit`} buttonType={"button"} text={"Save"} onClick={onClickSaveEdit} className={"editable-option-btn"} dataAttributes={{"data-index": idx}}/>
                 <Button id={`editable-option-${idx}-cancel`} buttonType={"button"} text={"Cancel"} onClick={onClickCancelEdit} className={"editable-option-btn"} dataAttributes={{"data-index": idx}}/>
                 <Button id={`editable-option-${idx}-delete`} buttonType={"button"} text={"Delete"} onClick={onClickDeleteEntry} className={"editable-option-btn"} dataAttributes={{"data-index": idx}}/>
             </Styled.ButtonContainer>
