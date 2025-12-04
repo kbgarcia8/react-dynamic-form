@@ -50,3 +50,8 @@
 - Used to fix redundant numbering in legend text of editable input options
 - Restricted editable/editing properties and props to radio and checkbox input types since it is only expected scenario
 - Fixed custom hook's (useTheme) context type declaration
+
+### [1.0.25] - 2025-12-04
+### Summary of Changes
+### Fixes/Adjustments
+- Adjusted optional prop types in order to cater expected dynamic of several props if input is an editable option

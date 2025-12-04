@@ -25,7 +25,7 @@ export interface ButtonProps {
 declare const InputTypes: readonly ["text", "password", "email", "number", "tel", "url", "search", "date", "file", "hidden"];
 export interface BaseInput {
     id: string;
-    onChange: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> | undefined;
+    onChange?: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> | undefined;
     isRequired: boolean;
     dataAttributes?: dataAttributesType;
     disabled?: boolean | undefined;
@@ -55,7 +55,7 @@ export interface GeneralInput extends BaseInput {
 export type InputProps = GeneralInput | TextAreaInput | CheckedInput;
 export interface LabelProps {
     htmlFor?: string;
-    textLabel: string;
+    textLabel?: string | undefined;
     additionalInfo: string;
     $labelFlexDirection?: React.CSSProperties['flexDirection'];
     source?: string;
@@ -67,9 +67,9 @@ export type EditableInputProps = {
     inputClass?: string | undefined;
     isEditable?: boolean;
     editIcon?: React.ReactNode;
-    onClickEdit: React.MouseEventHandler<HTMLButtonElement>;
+    onClickEdit?: React.MouseEventHandler<HTMLButtonElement>;
     deleteIcon?: React.ReactNode;
-    onClickDelete: React.MouseEventHandler<HTMLButtonElement>;
+    onClickDelete?: React.MouseEventHandler<HTMLButtonElement>;
     idx?: number;
     ref?: React.Ref<HTMLInputElement | HTMLTextAreaElement>;
 };
@@ -93,13 +93,13 @@ export interface EditableInformation {
     type: typeof InputTypes[number];
 }
 export interface NestedEditableOptionProps {
-    legend: string;
+    legend?: string;
     idx: number;
     editableInformation: EditableInformation[];
     onChangeOfEditableOption: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> | undefined;
-    onClickSaveEdit: React.MouseEventHandler<HTMLButtonElement>;
-    onClickCancelEdit: React.MouseEventHandler<HTMLButtonElement>;
-    onClickDeleteEntry: React.MouseEventHandler<HTMLButtonElement>;
+    onClickSaveEdit?: React.MouseEventHandler<HTMLButtonElement>;
+    onClickCancelEdit?: React.MouseEventHandler<HTMLButtonElement>;
+    onClickDeleteEntry?: React.MouseEventHandler<HTMLButtonElement>;
 }
 export type inputEntryShape<T extends boolean, P extends LabeledCheckboxOrRadio | LabeledTextLike> = P & {
     uniqueClass?: string;
@@ -107,12 +107,12 @@ export type inputEntryShape<T extends boolean, P extends LabeledCheckboxOrRadio 
 } & (T extends true ? P extends LabeledCheckboxOrRadio ? {
     editableInformation: EditableInformation[];
     editing: boolean;
-    onClickEdit: React.MouseEventHandler<HTMLButtonElement>;
+    onClickEdit?: React.MouseEventHandler<HTMLButtonElement>;
     editIcon: React.ReactNode;
-    onClickDelete: React.MouseEventHandler<HTMLButtonElement>;
+    onClickDelete?: React.MouseEventHandler<HTMLButtonElement>;
     deleteIcon: React.ReactNode;
-    onClickSave: React.MouseEventHandler<HTMLButtonElement>;
-    onClickCancel: React.MouseEventHandler<HTMLButtonElement>;
+    onClickSave?: React.MouseEventHandler<HTMLButtonElement>;
+    onClickCancel?: React.MouseEventHandler<HTMLButtonElement>;
 } : {
     editableInformation?: never;
     editing?: never;
@@ -134,10 +134,7 @@ export type inputEntryShape<T extends boolean, P extends LabeledCheckboxOrRadio 
 });
 export interface FieldsetShape {
     legend: string;
-    inputs: Array<
-    inputEntryShape<true, LabeledCheckboxOrRadio | LabeledTextLike> |
-    inputEntryShape<false, LabeledCheckboxOrRadio | LabeledTextLike>
-    >;
+    inputs: Array<inputEntryShape<true, LabeledCheckboxOrRadio | LabeledTextLike> | inputEntryShape<false, LabeledCheckboxOrRadio | LabeledTextLike>>;
     isExpandable: boolean;
 }
 type ConditionalEditable<P> = P extends Array<infer Item> ? Item extends {
@@ -153,23 +150,12 @@ export type DynamicFormProps = FormActionButtonsProps & (({
     fieldsets: FieldsetShape[];
     formInputs?: never;
     legendText?: never;
-} & ConditionalEditable<
-    Array<
-        inputEntryShape<true, LabeledCheckboxOrRadio | LabeledTextLike> |
-        inputEntryShape<false, LabeledCheckboxOrRadio | LabeledTextLike>
-    >>) | ({
+} & ConditionalEditable<Array<inputEntryShape<true, LabeledCheckboxOrRadio | LabeledTextLike> | inputEntryShape<false, LabeledCheckboxOrRadio | LabeledTextLike>>>) | ({
     fieldsets: null;
-    formInputs: Array<
-        inputEntryShape<true, LabeledCheckboxOrRadio | LabeledTextLike> |
-        inputEntryShape<false, LabeledCheckboxOrRadio | LabeledTextLike>
-    >;
+    formInputs: Array<inputEntryShape<true, LabeledCheckboxOrRadio | LabeledTextLike> | inputEntryShape<false, LabeledCheckboxOrRadio | LabeledTextLike>>;
     legendText?: string;
     labelAndInputContainerClass?: string;
-} & ConditionalEditable<
-    Array<
-        inputEntryShape<true, LabeledCheckboxOrRadio | LabeledTextLike> |
-        inputEntryShape<false, LabeledCheckboxOrRadio | LabeledTextLike>
-    >>)) & ({
+} & ConditionalEditable<Array<inputEntryShape<true, LabeledCheckboxOrRadio | LabeledTextLike> | inputEntryShape<false, LabeledCheckboxOrRadio | LabeledTextLike>>>)) & ({
     isExpandable: true;
     handleAddingInputEntry: React.MouseEventHandler<HTMLButtonElement>;
 } | {
@@ -183,5 +169,3 @@ export type DynamicFormProps = FormActionButtonsProps & (({
     inputClass?: string;
     labelAndInputContainerClass?: string;
 };
-export {};
-//# sourceMappingURL=propTypes.d.ts.map

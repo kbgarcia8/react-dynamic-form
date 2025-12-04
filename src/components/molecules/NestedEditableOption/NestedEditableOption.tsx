@@ -16,7 +16,7 @@ const NestedEditableOption = ({
     return (
         <Styled.FormFieldset className={"editable-option-fieldset"}>
             <Styled.FormLegend>{`${legend} ${idx + 1}`}</Styled.FormLegend>
-            {editableInformation.map((information, informationidx) => (
+            {editableInformation?.map((information, informationidx) => (
                 <Styled.LabelAndInputContainer key={`${information.name}-${informationidx}`} className={"editable-option-container"}>
                     <Input
                         id={`editable-option-${informationidx}`}

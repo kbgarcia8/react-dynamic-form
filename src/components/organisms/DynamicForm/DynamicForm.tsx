@@ -77,11 +77,11 @@ const DynamicForm = ({
                                     {(input.editing && input.isEditable) && <NestedEditableOption
                                         legend={`${fieldset.legend}`}
                                         idx={inputIndex}
-                                        editableInformation={input?.editableInformation}
+                                        editableInformation={input?.editableInformation || []}
                                         onChangeOfEditableOption={onChangeOfEditableOption}
-                                        onClickSaveEdit={input?.onClickSave}
-                                        onClickCancelEdit={input?.onClickCancel}
-                                        onClickDeleteEntry={input?.onClickDelete}
+                                        onClickSaveEdit={input?.onClickSave || ((e:React.MouseEvent<HTMLButtonElement>)=>{})}
+                                        onClickCancelEdit={input?.onClickCancel || ((e:React.MouseEvent<HTMLButtonElement>)=>{})}
+                                        onClickDeleteEntry={input?.onClickDelete || ((e:React.MouseEvent<HTMLButtonElement>)=>{})}
                                     />}
                                 </>
                                 )}
@@ -142,9 +142,9 @@ const DynamicForm = ({
                                         idx={inputIndex}
                                         editableInformation={input?.editableInformation}
                                         onChangeOfEditableOption={onChangeOfEditableOption}
-                                        onClickSaveEdit={input?.onClickSave}
-                                        onClickCancelEdit={input?.onClickCancel}
-                                        onClickDeleteEntry={input?.onClickDelete}
+                                        onClickSaveEdit={input?.onClickSave || ((e:React.MouseEvent<HTMLButtonElement>)=>{})}
+                                        onClickCancelEdit={input?.onClickCancel || ((e:React.MouseEvent<HTMLButtonElement>)=>{})}
+                                        onClickDeleteEntry={input?.onClickDelete || ((e:React.MouseEvent<HTMLButtonElement>)=>{})}
                                     />}
                                 </>
                                 )}
