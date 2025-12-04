@@ -3,6 +3,6 @@ import type { themeContextValue } from "../type/propTypes";
 
 // ! Need to seperate createContext() since React Fast Refresh treats it as a non component which means in ThemeContext.jsx it should not be included
 
-const ThemeContext = createContext<themeContextValue | undefined>(undefined);
+const ThemeContext = createContext<themeContextValue>({} as themeContextValue);
 
 export default ThemeContext;
