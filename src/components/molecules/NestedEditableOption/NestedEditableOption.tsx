@@ -30,16 +30,16 @@ const NestedEditableOption = ({
                         className={"editable-option"}                                       
                         dataAttributes={{
                             "data-index": informationidx,
-                            "data-fieldsetidx": fieldsetIndex,
+                            "data-fieldsetindex": fieldsetIndex,
                             "data-key": information['info']
                         }}
                     />
                 </Styled.LabelAndInputContainer>
             ))}                                            
             <Styled.ButtonContainer className={"editable-option-button-space"}>
-                <Button id={`editable-option-${idx}-submit`} buttonType={"button"} text={"Save"} onClick={onClickSaveEdit} className={"editable-option-btn"} dataAttributes={{"data-index": idx, "data-fieldsetIndex": fieldsetIndex}}/>
-                <Button id={`editable-option-${idx}-cancel`} buttonType={"button"} text={"Cancel"} onClick={onClickCancelEdit} className={"editable-option-btn"} dataAttributes={{"data-index": idx, "data-fieldsetIndex": fieldsetIndex}}/>
-                <Button id={`editable-option-${idx}-delete`} buttonType={"button"} text={"Delete"} onClick={onClickDeleteEntry} className={"editable-option-btn"} dataAttributes={{"data-index": idx, "data-fieldsetIndex": fieldsetIndex}}/>
+                <Button id={`editable-option-${idx}-submit`} buttonType={"button"} text={"Save"} onClick={onClickSaveEdit} className={"editable-option-btn"} dataAttributes={{"data-index": idx, "data-fieldsetindex": fieldsetIndex}}/>
+                <Button id={`editable-option-${idx}-cancel`} buttonType={"button"} text={"Cancel"} onClick={onClickCancelEdit} className={"editable-option-btn"} dataAttributes={{"data-index": idx, "data-fieldsetindex": fieldsetIndex}}/>
+                <Button id={`editable-option-${idx}-delete`} buttonType={"button"} text={"Delete"} onClick={onClickDeleteEntry} className={"editable-option-btn"} dataAttributes={{"data-index": idx, "data-fieldsetindex": fieldsetIndex}}/>
             </Styled.ButtonContainer>
         </Styled.FormFieldset>
     )

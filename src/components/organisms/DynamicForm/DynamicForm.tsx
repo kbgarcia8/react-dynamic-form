@@ -33,9 +33,9 @@ const DynamicForm = ({
     return (
         <Styled.Form id={`${id}-form`} className={className} onSubmit={handleSubmitForm}>
             {fieldsets
-                ? fieldsets.map((fieldset, fieldsetIdx) => (
-                    <Styled.FieldsetWrapper key={`${fieldset.legend}-${fieldsetIdx}`} className={`${id}-fieldset-wrapper`}>
-                        <Styled.FormFieldset id={`${id}-form-fieldset-${fieldsetIdx}`} className={`${fieldset.legend}-fieldset`}>
+                ? fieldsets.map((fieldset, fieldsetIndex) => (
+                    <Styled.FieldsetWrapper key={`${fieldset.legend}-${fieldsetIndex}`} className={`${id}-fieldset-wrapper`}>
+                        <Styled.FormFieldset id={`${id}-form-fieldset-${fieldsetIndex}`} className={`${fieldset.legend}-fieldset`}>
                             {fieldset.legend && <Styled.FormLegend className={`${fieldset.legend}-legend`}>{fieldset.legend}</Styled.FormLegend>}
                             {fieldset['inputs'].length !== 0
                             ? fieldset['inputs'].map((input, inputIndex) => (
@@ -76,7 +76,7 @@ const DynamicForm = ({
                                     />
                                     {(input.editing && input.isEditable) && <NestedEditableOption
                                         legend={`${fieldset.legend}`}
-                                        fieldsetIndex={fieldsetIdx}
+                                        fieldsetIndex={fieldsetIndex}
                                         idx={inputIndex}
                                         editableInformation={input?.editableInformation || []}
                                         onChangeOfEditableOption={onChangeOfEditableOption}
@@ -93,7 +93,7 @@ const DynamicForm = ({
                         </Styled.FormFieldset>
                         {fieldset.isExpandable && 
                             <Styled.ButtonContainer className={"add-input-button-space"}>
-                                <Button id={`expand-${fieldset.legend}-inputs`} buttonType={"button"} text={"+"} onClick={handleAddingInputEntry} className={`add-input-entry`} dataAttributes={{"data-fieldsetidx": fieldsetIdx}}/>
+                                <Button id={`expand-${fieldset.legend}-inputs`} buttonType={"button"} text={"+"} onClick={handleAddingInputEntry} className={`add-input-entry`} dataAttributes={{"data-fieldsetindex": fieldsetIndex}}/>
                             </Styled.ButtonContainer>
                         }
                     </Styled.FieldsetWrapper>
