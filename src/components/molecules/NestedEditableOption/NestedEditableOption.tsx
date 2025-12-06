@@ -6,6 +6,7 @@ import Button from "../../atoms/Button";
 
 const NestedEditableOption = ({
     legend,
+    fieldsetIndex=null,
     idx,
     editableInformation,
     onChangeOfEditableOption,
@@ -28,16 +29,17 @@ const NestedEditableOption = ({
                         isRequired={true}
                         className={"editable-option"}                                       
                         dataAttributes={{
-                            "data-index": informationidx, 
+                            "data-index": informationidx,
+                            "data-fieldsetidx": fieldsetIndex,
                             "data-key": information['info']
                         }}
                     />
                 </Styled.LabelAndInputContainer>
             ))}                                            
             <Styled.ButtonContainer className={"editable-option-button-space"}>
-                <Button id={`editable-option-${idx}-submit`} buttonType={"button"} text={"Save"} onClick={onClickSaveEdit} className={"editable-option-btn"} dataAttributes={{"data-index": idx}}/>
-                <Button id={`editable-option-${idx}-cancel`} buttonType={"button"} text={"Cancel"} onClick={onClickCancelEdit} className={"editable-option-btn"} dataAttributes={{"data-index": idx}}/>
-                <Button id={`editable-option-${idx}-delete`} buttonType={"button"} text={"Delete"} onClick={onClickDeleteEntry} className={"editable-option-btn"} dataAttributes={{"data-index": idx}}/>
+                <Button id={`editable-option-${idx}-submit`} buttonType={"button"} text={"Save"} onClick={onClickSaveEdit} className={"editable-option-btn"} dataAttributes={{"data-index": idx, "data-fieldsetIndex": fieldsetIndex}}/>
+                <Button id={`editable-option-${idx}-cancel`} buttonType={"button"} text={"Cancel"} onClick={onClickCancelEdit} className={"editable-option-btn"} dataAttributes={{"data-index": idx, "data-fieldsetIndex": fieldsetIndex}}/>
+                <Button id={`editable-option-${idx}-delete`} buttonType={"button"} text={"Delete"} onClick={onClickDeleteEntry} className={"editable-option-btn"} dataAttributes={{"data-index": idx, "data-fieldsetIndex": fieldsetIndex}}/>
             </Styled.ButtonContainer>
         </Styled.FormFieldset>
     )

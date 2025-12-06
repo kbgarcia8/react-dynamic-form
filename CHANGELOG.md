@@ -60,3 +60,8 @@
 ### Summary of Changes
 ### Fixes/Adjustments
 - Changed type of save button in NestedEditableOption from submit to button to prevent submit of main form
+
+### [1.0.27] - 2025-12-06
+### Summary of Changes
+### Added
+- Added fieldsetIndex on dataAttributes of buttons and input inside NestedEditableOption

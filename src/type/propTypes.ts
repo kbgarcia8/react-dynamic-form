@@ -8,7 +8,7 @@ export type ChildrenProp = {
     children: React.ReactNode;
 };
 type stringType = string | undefined;
-type dataAttributesType = Record<string, string | number | boolean> | undefined;
+type dataAttributesType = Record<string, string | number | boolean | null> | undefined;
 type ButtonType = 'button' | 'submit';
 export interface ButtonProps {
     onClick: React.MouseEventHandler<HTMLButtonElement> | undefined;
@@ -56,7 +56,7 @@ export type InputProps = GeneralInput | TextAreaInput | CheckedInput;
 export interface LabelProps {
     htmlFor?: string;
     textLabel?: string | undefined;
-    additionalInfo: string;
+    additionalInfo?: string | undefined;
     $labelFlexDirection?: React.CSSProperties['flexDirection'];
     source?: string;
     svg?: React.ReactNode;
@@ -94,6 +94,7 @@ export interface EditableInformation {
 }
 export interface NestedEditableOptionProps {
     legend?: string;
+    fieldsetIndex?: number | null;
     idx: number;
     editableInformation: EditableInformation[];
     onChangeOfEditableOption: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> | undefined;

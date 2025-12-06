@@ -76,6 +76,7 @@ const DynamicForm = ({
                                     />
                                     {(input.editing && input.isEditable) && <NestedEditableOption
                                         legend={`${fieldset.legend}`}
+                                        fieldsetIndex={fieldsetIdx}
                                         idx={inputIndex}
                                         editableInformation={input?.editableInformation || []}
                                         onChangeOfEditableOption={onChangeOfEditableOption}
@@ -92,7 +93,7 @@ const DynamicForm = ({
                         </Styled.FormFieldset>
                         {fieldset.isExpandable && 
                             <Styled.ButtonContainer className={"add-input-button-space"}>
-                                <Button id={`expand-${fieldset.legend}-inputs`} buttonType={"button"} text={"+"} onClick={handleAddingInputEntry} className={`add-input-entry`}/>
+                                <Button id={`expand-${fieldset.legend}-inputs`} buttonType={"button"} text={"+"} onClick={handleAddingInputEntry} className={`add-input-entry`} dataAttributes={{"data-fieldsetidx": fieldsetIdx}}/>
                             </Styled.ButtonContainer>
                         }
                     </Styled.FieldsetWrapper>
