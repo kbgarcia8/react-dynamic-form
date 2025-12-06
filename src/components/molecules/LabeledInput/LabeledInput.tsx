@@ -77,7 +77,7 @@ const LabeledInput = (props:React.PropsWithChildren<LabeledCheckboxOrRadio | Lab
                     <>
                     <Input
                     ref={ref as React.Ref<HTMLInputElement>}
-                    type="checkbox"
+                    type={type}
                     name={id}
                     id={id}
                     isRequired={isRequired}

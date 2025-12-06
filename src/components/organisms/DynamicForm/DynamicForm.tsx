@@ -30,12 +30,19 @@ const DynamicForm = ({
     className,
     children 
 }:React.PropsWithChildren<DynamicFormProps>) => {
+    console.log('Rendering DynamicForm', fieldsets);
+
+    fieldsets?.forEach((fieldset, fieldsetIndex) => {
+        console.log('Fieldset index', fieldsetIndex, 'legend:', fieldset.legend);
+        fieldset.inputs.forEach((input, inputIndex) => {
+            console.log('Input', inputIndex, 'type:', input.type, 'editing:', input.editing);
+        });
+    });
     return (
         <Styled.Form id={`${id}-form`} className={className} onSubmit={handleSubmitForm}>
             {fieldsets
-                ? fieldsets.map((fieldset, fieldsetIndex) => 
-                    {console.log(fieldsetIndex)
-                    return (<Styled.FieldsetWrapper key={`${fieldset.legend}-${fieldsetIndex}`} className={`${id}-fieldset-wrapper`}>
+                ? fieldsets.map((fieldset, fieldsetIndex) => (
+                    <Styled.FieldsetWrapper key={`${fieldset.legend}-${fieldsetIndex}`} className={`${id}-fieldset-wrapper`}>
                         <Styled.FormFieldset id={`${id}-form-fieldset-${fieldsetIndex}`} className={`${fieldset.legend}-fieldset`}>
                             {fieldset.legend && <Styled.FormLegend className={`${fieldset.legend}-legend`}>{fieldset.legend}</Styled.FormLegend>}
                             {fieldset['inputs'].length !== 0
@@ -98,7 +105,7 @@ const DynamicForm = ({
                             </Styled.ButtonContainer>
                         }
                     </Styled.FieldsetWrapper>
-                )})
+                ))
                 : <Styled.FieldsetWrapper className={`${id}-fieldset-wrapper`}>
                     <Styled.FormFieldset id={`${id}-form-fieldset`} className={`${legendText}-fieldset`}>
                         {legendText && <Styled.FormLegend className={`${legendText}-legend`}>{legendText}</Styled.FormLegend>}

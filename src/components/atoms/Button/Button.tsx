@@ -8,26 +8,28 @@ const Button = ({
     buttonType,
     source,
     svg,
-    alt = "alt-button-icon", 
+    alt = "alt-button-icon",
     text = "",
     className = "",
-    dataAttributes = {}
-}:ButtonProps) => {
-
+    dataAttributes = {},
+    ...rest
+}: ButtonProps) => {
     return (
         <Styled.DefaultButton
-            onClick={onClick as React.MouseEventHandler<HTMLButtonElement>}
             id={id}
             type={buttonType}
+            onClick={onClick as React.MouseEventHandler<HTMLButtonElement>}
             className={className}
-            {...dataAttributes}
+            {...rest}
+            {...dataAttributes} // <-- flattened here
         >
-            <Styled.ButtonTextAndIconSpace className={"button-icon-text-space"}>
-                {source ? <Styled.ButtonIcon src={source} alt={alt} /> : svg ? svg : ''}
-                {text && <Styled.ButtonText id={id} >{text}</Styled.ButtonText>}
+            <Styled.ButtonTextAndIconSpace className="button-icon-text-space">
+                {source ? <Styled.ButtonIcon src={source} alt={alt} /> : svg || ''}
+                {text && <Styled.ButtonText id={id}>{text}</Styled.ButtonText>}
             </Styled.ButtonTextAndIconSpace>
         </Styled.DefaultButton>
-    )
-}
+    );
+};
+
 
 export default Button;
