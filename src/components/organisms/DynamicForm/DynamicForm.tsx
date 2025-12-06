@@ -30,14 +30,6 @@ const DynamicForm = ({
     className,
     children 
 }:React.PropsWithChildren<DynamicFormProps>) => {
-    console.log('Rendering DynamicForm', fieldsets);
-
-    fieldsets?.forEach((fieldset, fieldsetIndex) => {
-        console.log('Fieldset index', fieldsetIndex, 'legend:', fieldset.legend);
-        fieldset.inputs.forEach((input, inputIndex) => {
-            console.log('Input', inputIndex, 'type:', input.type, 'editing:', input.editing);
-        });
-    });
     return (
         <Styled.Form id={`${id}-form`} className={className} onSubmit={handleSubmitForm}>
             {fieldsets
