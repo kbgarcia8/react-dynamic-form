@@ -8,7 +8,7 @@ export type ChildrenProp = {
     children: React.ReactNode;
 };
 type stringType = string | undefined;
-type dataAttributesType = Record<string, string | number | boolean | null> | undefined;
+type dataAttributesType = Record<string, string | number | boolean | undefined> | undefined;
 type ButtonType = 'button' | 'submit';
 export interface ButtonProps {
     onClick: React.MouseEventHandler<HTMLButtonElement> | undefined;
@@ -94,7 +94,7 @@ export interface EditableInformation {
 }
 export interface NestedEditableOptionProps {
     legend?: string;
-    fieldsetIndex?: number | null;
+    fieldsetIndex?: number;
     idx: number;
     editableInformation: EditableInformation[];
     onChangeOfEditableOption: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> | undefined;

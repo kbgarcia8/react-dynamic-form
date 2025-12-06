@@ -6,7 +6,7 @@ import Button from "../../atoms/Button";
 
 const NestedEditableOption = ({
     legend,
-    fieldsetIndex=null,
+    fieldsetIndex,
     idx,
     editableInformation,
     onChangeOfEditableOption,
@@ -14,6 +14,7 @@ const NestedEditableOption = ({
     onClickCancelEdit,
     onClickDeleteEntry
 }:NestedEditableOptionProps) => {
+    console.log(fieldsetIndex)
     return (
         <Styled.FormFieldset className={"editable-option-fieldset"}>
             <Styled.FormLegend>{`${legend} ${idx + 1}`}</Styled.FormLegend>

@@ -8,16 +8,16 @@ const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputProps>(( p
         const {rows = 5, cols = 30, value, ...rest } = props;
         return (
             <Styled.TextArea
-                id={id}
                 onChange={onChange}
                 value={value}
                 rows={rows}
                 cols={cols}
-                {...dataAttributes}
                 className={className}
                 ref={ref as React.Ref<HTMLTextAreaElement>}
                 disabled={disabled}
                 required={isRequired}
+                {...rest}
+                {...dataAttributes}
             />
         );
     }
@@ -26,14 +26,13 @@ const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputProps>(( p
         const { checked, ...rest} = props;
         return (
         <Styled.DefaultInput
-        ref={ref as React.Ref<HTMLInputElement>}
-        type="checkbox"
-        id={id}
-        checked={checked}
-        onChange={onChange as React.ChangeEventHandler<HTMLInputElement>}
-        disabled={disabled}
-        className={className}
-        {...dataAttributes}
+            ref={ref as React.Ref<HTMLInputElement>}
+            checked={checked}
+            onChange={onChange as React.ChangeEventHandler<HTMLInputElement>}
+            disabled={disabled}
+            className={className}
+            {...rest}
+            {...dataAttributes}
         />
       );
     }
@@ -41,18 +40,16 @@ const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputProps>(( p
     const { value, pattern, placeholderText, ...rest } = generalProps;
     return(
         <Styled.DefaultInput
-            id={id}
-            name={id}
             placeholder={placeholderText}
             onChange={onChange}
             value={value}
-            type={type}
             required={isRequired}
-            {...dataAttributes}
             className={className}
             ref={ref as React.Ref<HTMLInputElement>}
             disabled={disabled}
             pattern={pattern}
+            {...rest}
+            {...dataAttributes}
         />
     )
     
