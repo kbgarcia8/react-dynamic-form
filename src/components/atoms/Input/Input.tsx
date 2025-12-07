@@ -31,6 +31,7 @@ const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputProps>(( p
             onChange={onChange as React.ChangeEventHandler<HTMLInputElement>}
             disabled={disabled}
             className={className}
+            required={isRequired}
             {...rest}
             {...dataAttributes}
         />
