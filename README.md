@@ -36,6 +36,7 @@ Reusable React dynamic form showcasing editable, expandable and flexible inputs
    * [Styling components via styled-components](#styling-components-via-styled-components)
       + [Available Default Class Names](#available-default-class-names)
 - [Local Development](#local-development)
+- [Demo](#demo)
    * [License](#license)
 
 <!-- TOC end -->
@@ -221,7 +222,7 @@ function App() {
 | `fieldsets` | `FieldsetShape[]`     | `null`   | Used in multi-section form containing inputs divided into information groups<br><br>If used, legendText and formInputs is no longer needed  |
 | `legendText`   | `string`     | — |  |
 | `formInputs` | `inputEntryShape[]` | —  |  If no fieldsets is provided, this is an object containing information for label and inputs of a single-section form              |
-| `isExpandable`   | `boolean`     | `false` | If inputs are used as options commonly in type: checkbox/radio, this is to enabale a button for entry adding. If fieldset is null this is default to false  |
+| `isExpandable`   | `boolean`     | `false` | If inputs are used as options commonly in type: checkbox/radio, this is to enabale a button for entry adding. Can also be used to add input type for details (e.g. text, email, etc.) If fieldset is null this is default to false  |
 | `id`   | `string`     | — | Form tag id  |
 | `labelAndInputContainerClass`   | `string`     | — | className for `<LabeledInput/>` component inside `<DynamicForm/>` |
 | `labelClass`   | `string`     | — | className for `<Label/>` component inside `<LabeledInput/>` component inside `<DynamicForm/>` |
@@ -248,7 +249,7 @@ function App() {
 | Prop      | Type         | Default  | Description                     |
 | --------- | ------------ | -------- | ------------------------------- |
 | `uniqueClass`   | `string`     | — | className to uniquely select/distinguish a LabeledInput container |
-| `isEditable`   | `boolean`     | — | To determine if an input is editable or not<br>If false, all props below are automatically not needed |
+| `isEditable`   | `boolean`     | — | To determine if an input is editable or not. This is only applicable for radio or checkbox input to mimick an editable option/selection<br>If false, all props below are automatically not needed |
 | `editing`   | `boolean`     | — | To identify if an editable input is being modified<br>Can be used in open/close dialogs |
 | `onClickEdit`   | `(e:React.MouseEvent<HTMLButtonElement>) => void`     | — | Function to handle edit logic of editable input |
 | `editIcon`   | `React.ReactNode`     | — | TSX/JSX svg component that will serve as an icon for edit button of editable input |
@@ -417,6 +418,20 @@ cd react-dynamic-form
 npm install
 npm run dev
 ```
+
+<!-- TOC --><a name="demo"></a>
+## Demo
+```bash
+git clone https://github.com/kbgarcia8/test-react-form
+cd test-react-form
+npm install
+npm run dev
+```
+For the code of the demo where DynamicForm is used, please see:
+src/App.tsx
+
+<b>NOTE:</b> This demo uses styled-components for styling. When using CSS you can provide class to components to style them accordingly
+
 <!-- TOC --><a name="license"></a>
 ### License
 [![license](https://img.shields.io/github/license/kbgarcia8/react-dynamic-form
