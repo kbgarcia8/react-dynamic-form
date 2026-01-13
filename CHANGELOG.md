@@ -51,17 +51,31 @@
 - Restricted editable/editing properties and props to radio and checkbox input types since it is only expected scenario
 - Fixed custom hook's (useTheme) context type declaration
 
-### [1.0.25] - 2025-12-04
+### [1.1.25] - 2025-12-04
 ### Summary of Changes
 ### Fixes/Adjustments
 - Adjusted optional prop types in order to cater expected dynamic of several props if input is an editable option
 
-### [1.0.26] - 2025-12-05
+### [1.1.26] - 2025-12-05
 ### Summary of Changes
 ### Fixes/Adjustments
 - Changed type of save button in NestedEditableOption from submit to button to prevent submit of main form
 
-### [1.0.27] - 2025-12-06
+### [1.1.27] - 2025-12-06
 ### Summary of Changes
 ### Added
 - Added fieldsetIndex on dataAttributes of buttons and input inside NestedEditableOption
+
+### [1.1.28] - [1.1.40] - 2025-12-06
+### Summary of Changes
+### Added
+- Additional optimizations
+
+### [2.0.0] - 2026-01-14
+### Summary of Changes
+### Removed
+- onClick props for button type submit
+- Removed hasSubmit props from FormActionButtons and DynamicForm
+### Fixes
+- Splitted ButtonProps into union type to cater dependecy if onClick prop is required
+- Adjusted button component to administer update in ButtonProps

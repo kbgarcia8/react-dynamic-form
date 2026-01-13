@@ -10,8 +10,18 @@ export type ChildrenProp = {
 type stringType = string | undefined;
 type dataAttributesType = Record<string, string | number | boolean | undefined> | undefined;
 type ButtonType = 'button' | 'submit';
-export interface ButtonProps {
+
+interface hasOnClickButton { 
+    buttonType: 'button';
     onClick: React.MouseEventHandler<HTMLButtonElement> | undefined;
+}
+
+interface hasNoOnClickButton { 
+    buttonType: 'submit';
+    onClick?: never;
+}
+
+export interface GeneralButtonProps {
     id: string;
     buttonType: ButtonType;
     source?: string;
@@ -22,6 +32,12 @@ export interface ButtonProps {
     pattern?: string | number | undefined;
     dataAttributes?: dataAttributesType;
 }
+
+export type ButtonTypeButton = GeneralButtonProps & hasOnClickButton;
+export type SubmitTypeButton = GeneralButtonProps & hasNoOnClickButton;
+
+export type ButtonProps = ButtonTypeButton | SubmitTypeButton;
+
 declare const InputTypes: readonly ["text", "password", "email", "number", "tel", "url", "search", "date", "file", "hidden"];
 export interface BaseInput {
     id: string;
@@ -77,15 +93,13 @@ export type LabeledCheckboxOrRadio = LabelProps & CheckedInput & EditableInputPr
 export type LabeledTextLike = (LabelProps & TextAreaInput & EditableInputProps) | (LabelProps & GeneralInput & EditableInputProps);
 export interface FormActionButtonsProps {
     id: string;
-    hasSubmit: boolean;
-    submitText: string;
-    handleSubmit: React.MouseEventHandler<HTMLButtonElement>;
-    hasReset: boolean;
-    resetText: string;
-    handleReset: React.MouseEventHandler<HTMLButtonElement>;
-    hasCancel: boolean;
-    cancelText: string;
-    handleCancel: React.MouseEventHandler<HTMLButtonElement>;
+    submitText: string | undefined;
+    hasReset?: boolean | undefined;
+    resetText?: string | undefined;
+    handleReset?: React.MouseEventHandler<HTMLButtonElement> | undefined;
+    hasCancel?: boolean | undefined;
+    cancelText?: string | undefined;
+    handleCancel?: React.MouseEventHandler<HTMLButtonElement> | undefined;
 }
 export interface EditableInformation {
     name: string;

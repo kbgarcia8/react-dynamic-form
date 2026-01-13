@@ -17,9 +17,7 @@ const DynamicForm = ({
     inputClass,
     onChangeOfEditableOption, 
     handleAddingInputEntry,
-    hasSubmit = false,
     submitText,
-    handleSubmit,
     hasReset = false,
     resetText,
     handleReset,
@@ -161,9 +159,7 @@ const DynamicForm = ({
             }
             <FormActionButtons
                 id={id}
-                hasSubmit={hasSubmit}
                 submitText={submitText}
-                handleSubmit={handleSubmit}
                 hasReset={hasReset}
                 resetText={resetText}
                 handleReset={handleReset}
