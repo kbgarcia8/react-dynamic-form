@@ -1,6 +1,6 @@
 {
   "name": "@kbgarcia8/react-dynamic-form",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A form that can be nested with editable, expandable and flexible input-forms",
   "keywords": [
     "form",
