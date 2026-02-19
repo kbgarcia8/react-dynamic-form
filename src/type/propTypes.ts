@@ -24,8 +24,8 @@ interface hasNoOnClickButton {
 export interface GeneralButtonProps {
     id: string;
     buttonType: ButtonType;
-    source?: string;
-    svg?: React.ReactNode;
+    startIcon?: React.ReactNode;
+    endIcon?: React.ReactNode;
     alt?: string;
     text?: string;
     className?: stringType;
@@ -74,8 +74,8 @@ export interface LabelProps {
     textLabel?: string | undefined;
     additionalInfo?: string | undefined;
     $labelFlexDirection?: React.CSSProperties['flexDirection'];
-    source?: string;
-    svg?: React.ReactNode;
+    startIcon?: React.ReactNode;
+    endIcon?: React.ReactNode;
     className?: stringType;
 }
 export type EditableInputProps = {
@@ -94,11 +94,14 @@ export type LabeledTextLike = (LabelProps & TextAreaInput & EditableInputProps) 
 export interface FormActionButtonsProps {
     id: string;
     submitText: string | undefined;
+    submitIcon?: React.ReactNode;
     hasReset?: boolean | undefined;
     resetText?: string | undefined;
+    resetIcon?: React.ReactNode;
     handleReset?: React.MouseEventHandler<HTMLButtonElement> | undefined;
     hasCancel?: boolean | undefined;
     cancelText?: string | undefined;
+    cancelIcon?: React.ReactNode;
     handleCancel?: React.MouseEventHandler<HTMLButtonElement> | undefined;
 }
 export interface EditableInformation {

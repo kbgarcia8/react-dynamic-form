@@ -7,20 +7,23 @@ const Label = ({
     textLabel, 
     additionalInfo, 
     $labelFlexDirection, 
-    source, 
-    svg,
+    startIcon, 
+    endIcon,
     className,
     children
 }: React.PropsWithChildren<LabelProps>) => {
     return(
         <Styled.DefaultLabel htmlFor={htmlFor} className={className} $labelFlexDirection={$labelFlexDirection}>
-            {(source || svg) && <Styled.LabelIconContainer className={"label-icon-container"}>
-                {source ? <img src={source} alt={`${htmlFor}-label-icon`} /> : svg ? svg : ''}
+            {startIcon && <Styled.LabelIconContainer className={"label-icon-container"}>
+                {startIcon}
             </Styled.LabelIconContainer>}
             <Styled.LabelTextContainer className={"label-text-container"}>
                 <Styled.MainLabelText className={"main-label"}>{textLabel}</Styled.MainLabelText>
                 {additionalInfo && <Styled.LabelAdditionalInfo className={"additional-info"} >{additionalInfo}</Styled.LabelAdditionalInfo>}
             </Styled.LabelTextContainer>
+            {endIcon && <Styled.LabelIconContainer className={"label-icon-container"}>
+                {endIcon}
+            </Styled.LabelIconContainer>}
             {children}
         </Styled.DefaultLabel>
     )

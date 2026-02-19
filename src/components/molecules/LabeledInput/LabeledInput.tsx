@@ -4,6 +4,7 @@ import Label from "../../atoms/Label";
 import Input from "../../atoms/Input";
 import Button from "../../atoms/Button";
 import type { LabeledCheckboxOrRadio, LabeledTextLike, GeneralInput } from "../../../type/propTypes";
+import { start } from "repl";
 
 const LabeledInput = (props:React.PropsWithChildren<LabeledCheckboxOrRadio | LabeledTextLike>) => {
     const { className,
@@ -12,7 +13,8 @@ const LabeledInput = (props:React.PropsWithChildren<LabeledCheckboxOrRadio | Lab
     textLabel,
     additionalInfo,
     $labelFlexDirection,
-    svg,
+    startIcon,
+    endIcon,
     labelClass,
     onChange,
     isRequired,
@@ -29,7 +31,7 @@ const LabeledInput = (props:React.PropsWithChildren<LabeledCheckboxOrRadio | Lab
     children} = props;
     return(
         <Styled.LabelAndInputContainer className={`${className} ${id.replace('#','')}-label-input-container`}>
-            {(type !== 'radio' && type !== 'checkbox') && <Label htmlFor={id} textLabel={textLabel} additionalInfo={additionalInfo} $labelFlexDirection={$labelFlexDirection} svg={svg} className={labelClass} />}
+            {(type !== 'radio' && type !== 'checkbox') && <Label startIcon={startIcon} endIcon={endIcon} htmlFor={id} textLabel={textLabel} additionalInfo={additionalInfo} $labelFlexDirection={$labelFlexDirection} className={labelClass} />}
             {((type !== 'radio' && type !== 'checkbox') && type === 'textarea') && (() => {
                 //? Conditional prop destructuring / discriminated narrowing - Extract props AFTER receiving them since not all props are present
                 //? Inside component (your destructuring)
@@ -87,14 +89,14 @@ const LabeledInput = (props:React.PropsWithChildren<LabeledCheckboxOrRadio | Lab
                     className={inputClass}
                     dataAttributes={dataAttributes}
                     />
-                    <Label htmlFor={id} textLabel={textLabel} additionalInfo={additionalInfo} $labelFlexDirection={$labelFlexDirection} svg={svg} className={labelClass} />
+                    <Label startIcon={startIcon} endIcon={endIcon} htmlFor={id} textLabel={textLabel} additionalInfo={additionalInfo} $labelFlexDirection={$labelFlexDirection} className={labelClass} />
                     </>
                 )
             })()}
             {/* Radio inputs usually have labels next to them */}
             {isEditable && <Styled.EditableInputButtonContainer className={"input-edit-buttons"}>
-                    <Button id={`editable-${id}-edit-btn`} svg={editIcon} buttonType={"button"} onClick={onClickEdit} className={`edit-radio-${idx}`} dataAttributes={dataAttributes}/>
-                    <Button id={`editable-${id}-delete-btn`} svg={deleteIcon} buttonType={"button"} onClick={onClickDelete} className={`delete-radio-${idx}`} dataAttributes={dataAttributes}/>
+                    <Button id={`editable-${id}-edit-btn`} startIcon={editIcon} buttonType={"button"} onClick={onClickEdit} className={`edit-radio-${idx}`} dataAttributes={dataAttributes}/>
+                    <Button id={`editable-${id}-delete-btn`} startIcon={deleteIcon} buttonType={"button"} onClick={onClickDelete} className={`delete-radio-${idx}`} dataAttributes={dataAttributes}/>
                 </Styled.EditableInputButtonContainer>}
             {children}
         </Styled.LabelAndInputContainer>

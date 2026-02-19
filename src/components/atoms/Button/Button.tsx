@@ -6,8 +6,8 @@ const Button = ({
     onClick,
     id,
     buttonType,
-    source,
-    svg,
+    startIcon,
+    endIcon,
     alt = "alt-button-icon", 
     text = "",
     className = "",
@@ -23,8 +23,9 @@ const Button = ({
                 {...dataAttributes}
             >
                 <Styled.ButtonTextAndIconSpace className={"button-icon-text-space"}>
-                    {source ? <Styled.ButtonIcon src={source} alt={alt} /> : svg ? svg : ''}
+                    {startIcon ? startIcon : ''}
                     {text && <Styled.ButtonText id={id} >{text}</Styled.ButtonText>}
+                    {endIcon ? endIcon : ''}
                 </Styled.ButtonTextAndIconSpace>
             </Styled.DefaultButton>
         )
@@ -39,8 +40,9 @@ const Button = ({
                 {...dataAttributes}
             >
                 <Styled.ButtonTextAndIconSpace className={"button-icon-text-space"}>
-                    {source ? <Styled.ButtonIcon src={source} alt={alt} /> : svg ? svg : ''}
+                    {startIcon ? startIcon : ''}
                     {text && <Styled.ButtonText id={id} >{text}</Styled.ButtonText>}
+                    {endIcon ? endIcon : ''}
                 </Styled.ButtonTextAndIconSpace>
             </Styled.DefaultButton>
         )

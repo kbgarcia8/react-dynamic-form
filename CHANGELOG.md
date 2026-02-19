@@ -71,7 +71,7 @@
 ### Added
 - Additional optimizations
 
-### [2.0.0] - 2026-01-14
+### [2.0.0] - [2.0.1] 2026-01-14
 ### Summary of Changes
 ### Removed
 - onClick props for button type submit
@@ -79,3 +79,8 @@
 ### Fixes
 - Splitted ButtonProps into union type to cater dependecy if onClick prop is required
 - Adjusted button component to administer update in ButtonProps
+
+### [2.0.0] - [2.0.1] 2026-02-19
+### Summary of Changes
+### Added
+- startIcon and endIcon for buttons and label

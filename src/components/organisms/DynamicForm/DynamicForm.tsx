@@ -18,11 +18,14 @@ const DynamicForm = ({
     onChangeOfEditableOption, 
     handleAddingInputEntry,
     submitText,
+    submitIcon,
     hasReset = false,
     resetText,
+    resetIcon,
     handleReset,
     hasCancel = false,
     cancelText,
+    cancelIcon,
     handleCancel,
     handleSubmitForm,
     className,
@@ -160,11 +163,14 @@ const DynamicForm = ({
             <FormActionButtons
                 id={id}
                 submitText={submitText}
+                submitIcon={submitIcon}
                 hasReset={hasReset}
                 resetText={resetText}
+                resetIcon={resetIcon}
                 handleReset={handleReset}
                 hasCancel={hasCancel}
                 cancelText={cancelText}
+                cancelIcon={cancelIcon}
                 handleCancel={handleCancel}
             />
             <Styled.ChildrenContainer className={"children-container"}>
