@@ -5,6 +5,9 @@ import type { FormActionButtonsProps } from "../../../type/propTypes";
 
 const FormActionButtons = ({
     id,
+    formActionButtonSize,
+    formActionButtonColor,
+    formActionButtonRadius,
     submitText,
     submitIcon,
     hasReset,
@@ -18,9 +21,9 @@ const FormActionButtons = ({
 }:FormActionButtonsProps) => {
     return(
         <Styled.ButtonContainer className={"form-main-button-container"}>
-            <Button id={`form-${id}-submit`} startIcon={submitIcon} buttonType={"submit"} text={submitText ?? "Submit"} className={"submit-form-btn"}/>
-            {hasReset && <Button id={`form-${id}-edit`} startIcon={resetIcon} buttonType={"button"} text={resetText ?? "Reset"} onClick={handleReset} className={"reset-form-btn"}/>}
-            {hasCancel && <Button id={`form-${id}-cancel`} startIcon={cancelIcon} buttonType={"button"} text={cancelText ?? "Cancel"} onClick={handleCancel} className={"cancel-form-btn"}/>}                
+            <Button id={`form-${id}-submit`} size={formActionButtonSize || 'small'} color={formActionButtonColor || 'primary'} radius={formActionButtonRadius || 'squircle'} startIcon={submitIcon} buttonType={"submit"} text={submitText ?? "Submit"} className={"submit-form-btn"}/>
+            {hasReset && <Button id={`form-${id}-edit`} size={formActionButtonSize || 'small'} color={formActionButtonColor || 'primary'} radius={formActionButtonRadius || 'squircle'} startIcon={resetIcon} buttonType={"button"} text={resetText ?? "Reset"} onClick={handleReset} className={"reset-form-btn"}/>}
+            {hasCancel && <Button id={`form-${id}-cancel`} size={formActionButtonSize || 'small'} color={formActionButtonColor || 'primary'} radius={formActionButtonRadius || 'squircle'} startIcon={cancelIcon} buttonType={"button"} text={cancelText ?? "Cancel"} onClick={handleCancel} className={"cancel-form-btn"}/>}                
         </Styled.ButtonContainer>
     )
 };

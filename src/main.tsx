@@ -1,6 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { ThemeContextProvider } from '@kbgarcia8/react-dynamic-form'
+import { ThemeContextProvider } from './context/ThemeContextWrapper'
 import './index.css'
 import App from './App'
 
@@ -10,4 +10,4 @@ createRoot(document.getElementById('root')!).render(
       <App />
     </ThemeContextProvider>
   </StrictMode>,
-)
+);

@@ -5,25 +5,29 @@ import type { ButtonProps } from "../../../type/propTypes";
 const Button = ({
     onClick,
     id,
-    buttonType,
+    buttonType="button",
     startIcon,
     endIcon,
-    alt = "alt-button-icon", 
     text = "",
     className = "",
-    dataAttributes = {}
+    dataAttributes = {},
+    color,
+    radius,
+    size
 }:ButtonProps) => {
     if(buttonType === 'submit') {
         return (
             <Styled.DefaultButton
                 id={id}
-                type={buttonType}
+                type={'submit'}
                 className={className}
                 {...dataAttributes}
+                $color={color || 'primary'}
+                $radius={radius || 'squircle'}
             >
-                <Styled.ButtonTextAndIconSpace className={"button-icon-text-space"}>
+                <Styled.ButtonTextAndIconSpace className={"button-icon-text-space"} $hasIcon={Boolean(startIcon || endIcon)} $hasText={Boolean(text)}>
                     {startIcon ? startIcon : ''}
-                    {text && <Styled.ButtonText id={id} >{text}</Styled.ButtonText>}
+                    {text && <Styled.ButtonText $size={size || 'small'} id={id} >{text}</Styled.ButtonText>}
                     {endIcon ? endIcon : ''}
                 </Styled.ButtonTextAndIconSpace>
             </Styled.DefaultButton>
@@ -31,20 +35,22 @@ const Button = ({
     }
 
     return (
-            <Styled.DefaultButton
-                onClick={onClick as React.MouseEventHandler<HTMLButtonElement>}
-                id={id}
-                type={buttonType}
-                className={className}
-                {...dataAttributes}
-            >
-                <Styled.ButtonTextAndIconSpace className={"button-icon-text-space"}>
-                    {startIcon ? startIcon : ''}
-                    {text && <Styled.ButtonText id={id} >{text}</Styled.ButtonText>}
-                    {endIcon ? endIcon : ''}
-                </Styled.ButtonTextAndIconSpace>
-            </Styled.DefaultButton>
-        )
+        <Styled.DefaultButton
+            onClick={onClick as React.MouseEventHandler<HTMLButtonElement>}
+            id={id}
+            type={buttonType}
+            className={className}
+            {...dataAttributes}
+            $color={color || 'primary'}
+            $radius={radius || 'squircle'}
+        >
+            <Styled.ButtonTextAndIconSpace className={"button-icon-text-space"} $hasIcon={Boolean(startIcon || endIcon)} $hasText={Boolean(text)}>
+                {startIcon ? startIcon : ''}
+                {text && <Styled.ButtonText $size={size || 'small'} id={id} >{text}</Styled.ButtonText>}
+                {endIcon ? endIcon : ''}
+            </Styled.ButtonTextAndIconSpace>
+        </Styled.DefaultButton>
+    )
 }
 
 export default Button;

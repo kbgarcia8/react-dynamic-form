@@ -1,5 +1,6 @@
 import type { Theme } from './constantTypes';
 import type React from 'react';
+import { COLORS, SIZES, RADIUS } from "../components/atoms/Button/Button.styles";
 export interface themeContextValue {
     currentTheme: Theme;
     toggleTheme: () => void;
@@ -7,36 +8,37 @@ export interface themeContextValue {
 export type ChildrenProp = {
     children: React.ReactNode;
 };
-type stringType = string | undefined;
+
 type dataAttributesType = Record<string, string | number | boolean | undefined> | undefined;
-type ButtonType = 'button' | 'submit';
 
 interface hasOnClickButton { 
-    buttonType: 'button';
+    buttonType: 'button' | 'reset';
     onClick: React.MouseEventHandler<HTMLButtonElement> | undefined;
-}
+};
 
 interface hasNoOnClickButton { 
     buttonType: 'submit';
     onClick?: never;
-}
+};
 
 export interface GeneralButtonProps {
-    id: string;
-    buttonType: ButtonType;
+    id?: string;
+    source?: string;
     startIcon?: React.ReactNode;
     endIcon?: React.ReactNode;
-    alt?: string;
     text?: string;
-    className?: stringType;
+    className?: string;
     pattern?: string | number | undefined;
+    color?: keyof typeof COLORS;
+    size?: keyof typeof SIZES;
+    radius?: keyof typeof RADIUS;
     dataAttributes?: dataAttributesType;
-}
+};
 
 export type ButtonTypeButton = GeneralButtonProps & hasOnClickButton;
-export type SubmitTypeButton = GeneralButtonProps & hasNoOnClickButton;
+export type SubmitOrResetTypeButton = GeneralButtonProps & hasNoOnClickButton;
 
-export type ButtonProps = ButtonTypeButton | SubmitTypeButton;
+export type ButtonProps = ButtonTypeButton | SubmitOrResetTypeButton;
 
 declare const InputTypes: readonly ["text", "password", "email", "number", "tel", "url", "search", "date", "file", "hidden"];
 export interface BaseInput {
@@ -45,7 +47,7 @@ export interface BaseInput {
     isRequired: boolean;
     dataAttributes?: dataAttributesType;
     disabled?: boolean | undefined;
-    className?: stringType;
+    className?: string;
     name: string;
 }
 export interface TextAreaInput extends BaseInput {
@@ -62,13 +64,14 @@ export interface CheckedInput extends BaseInput {
 export interface GeneralInput extends BaseInput {
     type: Exclude<typeof InputTypes[number], 'textarea' | 'radio' | 'checkbox'>;
     value: string;
-    pattern?: stringType;
-    placeholderText?: stringType;
+    pattern?: string;
+    placeholderText?: string;
     checked?: never;
     rows?: never;
     cols?: never;
 }
 export type InputProps = GeneralInput | TextAreaInput | CheckedInput;
+
 export interface LabelProps {
     htmlFor?: string;
     textLabel?: string | undefined;
@@ -76,7 +79,7 @@ export interface LabelProps {
     $labelFlexDirection?: React.CSSProperties['flexDirection'];
     startIcon?: React.ReactNode;
     endIcon?: React.ReactNode;
-    className?: stringType;
+    className?: string;
 }
 export type EditableInputProps = {
     labelClass?: string | undefined;
@@ -93,6 +96,9 @@ export type LabeledCheckboxOrRadio = LabelProps & CheckedInput & EditableInputPr
 export type LabeledTextLike = (LabelProps & TextAreaInput & EditableInputProps) | (LabelProps & GeneralInput & EditableInputProps);
 export interface FormActionButtonsProps {
     id: string;
+    formActionButtonSize: keyof typeof SIZES;
+    formActionButtonColor: keyof typeof COLORS;
+    formActionButtonRadius: keyof typeof RADIUS;
     submitText: string | undefined;
     submitIcon?: React.ReactNode;
     hasReset?: boolean | undefined;
@@ -110,9 +116,21 @@ export interface EditableInformation {
     type: typeof InputTypes[number];
 }
 export interface NestedEditableOptionProps {
+    editableButtonSize: keyof typeof SIZES;
+    editableButtonColor: keyof typeof COLORS;
+    editableButtonRadius: keyof typeof RADIUS;
     legend?: string;
     fieldsetIndex?: number;
     idx: number;
+    saveText?: string;
+    saveButtonStartIcon?: React.ReactNode;
+    saveButtonEndIcon?: React.ReactNode;
+    cancelText?: string;
+    cancelButtonStartIcon?: React.ReactNode;
+    cancelButtonEndIcon?: React.ReactNode;
+    deleteText?: string;
+    deleteButtonStartIcon?: React.ReactNode;
+    deleteButtonEndIcon?: React.ReactNode;
     editableInformation: EditableInformation[];
     onChangeOfEditableOption: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> | undefined;
     onClickSaveEdit?: React.MouseEventHandler<HTMLButtonElement>;
@@ -123,6 +141,9 @@ export type inputEntryShape<T extends boolean, P extends LabeledCheckboxOrRadio 
     uniqueClass?: string;
     isEditable: T;
 } & (T extends true ? P extends LabeledCheckboxOrRadio ? {
+    editableButtonSize: keyof typeof SIZES;
+    editableButtonColor: keyof typeof COLORS;
+    editableButtonRadius: keyof typeof RADIUS;
     editableInformation: EditableInformation[];
     editing: boolean;
     onClickEdit?: React.MouseEventHandler<HTMLButtonElement>;

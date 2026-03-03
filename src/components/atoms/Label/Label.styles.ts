@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import { v } from "../../../styles/variables";
+import { v } from '../../../styles/variables';
 import type { LabelProps } from "../../../type/propTypes";
 
 export const DefaultLabel = styled.label<Pick<LabelProps, '$labelFlexDirection'>>`
     display: flex;
     align-items: center;
-    justify-content:center;
+    justify-content: center;
     height: auto;
     flex-direction:  ${(props) => props.$labelFlexDirection || "column"};
     font-family: ${v.fonts.secondary}, ${v.fonts.fallback};

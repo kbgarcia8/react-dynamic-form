@@ -17,6 +17,9 @@ const DynamicForm = ({
     inputClass,
     onChangeOfEditableOption, 
     handleAddingInputEntry,
+    formActionButtonSize,
+    formActionButtonColor,
+    formActionButtonRadius,
     submitText,
     submitIcon,
     hasReset = false,
@@ -76,6 +79,9 @@ const DynamicForm = ({
                                         className={`${labelAndInputContainerClass} ${input?.uniqueClass}`}
                                     />
                                     {(input.editing && input.isEditable) && <NestedEditableOption
+                                        editableButtonSize={input.editableButtonSize}
+                                        editableButtonColor={input.editableButtonColor}
+                                        editableButtonRadius={input.editableButtonRadius}
                                         legend={`${fieldset.legend}`}
                                         fieldsetIndex={fieldsetIndex}
                                         idx={inputIndex}
@@ -140,6 +146,9 @@ const DynamicForm = ({
                                         className={`${labelAndInputContainerClass} ${input?.uniqueClass}`}
                                     />
                                     {(input.editing && input.isEditable) && <NestedEditableOption
+                                        editableButtonSize={input.editableButtonSize}
+                                        editableButtonColor={input.editableButtonColor}
+                                        editableButtonRadius={input.editableButtonRadius}
                                         legend={`${legendText}`}
                                         idx={inputIndex}
                                         editableInformation={input?.editableInformation}
@@ -162,6 +171,9 @@ const DynamicForm = ({
             }
             <FormActionButtons
                 id={id}
+                formActionButtonSize={formActionButtonSize}
+                formActionButtonColor={formActionButtonColor}
+                formActionButtonRadius={formActionButtonRadius}
                 submitText={submitText}
                 submitIcon={submitIcon}
                 hasReset={hasReset}

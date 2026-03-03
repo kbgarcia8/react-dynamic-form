@@ -4,8 +4,8 @@ import "./App.css";
 import { FaEdit } from "react-icons/fa";
 import { AiFillDelete } from "react-icons/ai";
 import { StyledDynamicForm } from './DynamicForm.styles'
-import type { FieldsetShape, inputEntryShape, LabeledCheckboxOrRadio, LabeledTextLike } from '@kbgarcia8/react-dynamic-form'
-import { useTheme } from '@kbgarcia8/react-dynamic-form'
+import type { FieldsetShape, inputEntryShape, LabeledCheckboxOrRadio, LabeledTextLike } from './type/propTypes'
+import useTheme from './hooks/useTheme'
 
 const addressInputsArray:inputEntryShape<true,LabeledCheckboxOrRadio>[] = [
     {
@@ -218,12 +218,6 @@ const submitLogic = () => {
 
 const handleSubmitForm = (e: React.FormEvent<HTMLFormElement>) => {
   e.preventDefault()
-  submitLogic()
-}
-
-const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
-  const target = e.target as HTMLElement
-  console.log(target.id)
   submitLogic()
 }
 
