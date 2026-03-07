@@ -80,7 +80,7 @@
 - Splitted ButtonProps into union type to cater dependecy if onClick prop is required
 - Adjusted button component to administer update in ButtonProps
 
-### [2.0.0] - [2.0.1] 2026-02-19
+### [2.0.0] - [2.0.2] 2026-02-19
 ### Summary of Changes
 ### Added
 - startIcon and endIcon for buttons and label

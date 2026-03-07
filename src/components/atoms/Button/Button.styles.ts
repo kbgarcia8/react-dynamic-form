@@ -128,6 +128,7 @@ export const DefaultButton = styled.button<{
     justify-content: center;
     padding: ${v.spacing.xxxsmall} ${v.spacing.xxsmall};
     flex: 1;
+    margin: 0;
     cursor: pointer;
     transition: background-color 0.2s ease, border-color 0.2s ease;
     ${({ $color }) => COLORS[$color || 'primary']}

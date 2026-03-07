@@ -162,6 +162,9 @@ export type inputEntryShape<T extends boolean, P extends LabeledCheckboxOrRadio 
     onClickSave?: React.MouseEventHandler<HTMLButtonElement>;
     onClickCancel?: React.MouseEventHandler<HTMLButtonElement>;
 } : {
+    editableButtonSize?:never;
+    editableButtonColor?:never;
+    editableButtonRadius?:never;
     editableInformation?: never;
     saveText?: never;
     saveButtonStartIcon?: never;
@@ -180,6 +183,9 @@ export type inputEntryShape<T extends boolean, P extends LabeledCheckboxOrRadio 
     onClickSave?: never;
     onClickCancel?: never;
 } : {
+    editableButtonSize?:never;
+    editableButtonColor?:never;
+    editableButtonRadius?:never;
     editableInformation?: never;
     saveText?: never;
     saveButtonStartIcon?: never;

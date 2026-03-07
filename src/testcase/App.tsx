@@ -4,8 +4,9 @@ import "./App.css";
 import { FaEdit } from "react-icons/fa";
 import { AiFillDelete } from "react-icons/ai";
 import { StyledDynamicForm } from './DynamicForm.styles'
-import type { FieldsetShape, inputEntryShape, LabeledCheckboxOrRadio, LabeledTextLike } from './type/propTypes'
-import useTheme from './hooks/useTheme'
+import type { FieldsetShape, inputEntryShape, LabeledCheckboxOrRadio, LabeledTextLike } from '../type/propTypes'
+import useTheme from '../hooks/useTheme'
+import { FaArrowCircleRight } from "react-icons/fa";
 
 const addressInputsArray:inputEntryShape<true,LabeledCheckboxOrRadio>[] = [
     {
@@ -23,6 +24,9 @@ const addressInputsArray:inputEntryShape<true,LabeledCheckboxOrRadio>[] = [
       editIcon: <FaEdit/>, 
       deleteIcon: <AiFillDelete/>,
       editing: false,
+      editableButtonSize: 'small',
+      editableButtonColor: 'secondary',
+      editableButtonRadius: 'roundedsquare',
       editableInformation: [ 
           {
               name: 'Address 1',
@@ -47,6 +51,9 @@ const addressInputsArray:inputEntryShape<true,LabeledCheckboxOrRadio>[] = [
       editIcon: <FaEdit/>, 
       deleteIcon: <AiFillDelete/>,
       editing: false,
+      editableButtonSize: 'small',
+      editableButtonColor: 'secondary',
+      editableButtonRadius: 'roundedsquare',
       editableInformation: [ 
           {
               name: 'Address 2',
@@ -71,6 +78,9 @@ const addressInputsArray:inputEntryShape<true,LabeledCheckboxOrRadio>[] = [
       editIcon: <FaEdit/>, 
       deleteIcon: <AiFillDelete/>,
       editing: false,
+      editableButtonSize: 'small',
+      editableButtonColor: 'secondary',
+      editableButtonRadius: 'roundedsquare',
       editableInformation: [ 
           {
               name: 'Address 3',
@@ -98,6 +108,9 @@ const paymentInputArray:inputEntryShape<true,LabeledCheckboxOrRadio>[] = [
       editIcon: <FaEdit/>, 
       deleteIcon: <AiFillDelete/>,
       editing: false,
+      editableButtonSize: 'medium',
+      editableButtonColor: 'primary',
+      editableButtonRadius: 'circle',
       editableInformation: [ 
           {
               name: 'Payment Method 1',
@@ -127,6 +140,9 @@ const paymentInputArray:inputEntryShape<true,LabeledCheckboxOrRadio>[] = [
       editIcon: <FaEdit/>, 
       deleteIcon: <AiFillDelete/>,
       editing: false,
+      editableButtonSize: 'medium',
+      editableButtonColor: 'primary',
+      editableButtonRadius: 'circle',
       editableInformation: [ 
           {
               name: 'Payment Method 2',
@@ -157,6 +173,9 @@ const paymentInputArray:inputEntryShape<true,LabeledCheckboxOrRadio>[] = [
       editIcon: <FaEdit/>, 
       deleteIcon: <AiFillDelete/>,
       editing: false,
+      editableButtonSize: 'medium',
+      editableButtonColor: 'primary',
+      editableButtonRadius: 'circle',
       editableInformation: [ 
           {
               name: 'Payment Method 3',
@@ -561,14 +580,12 @@ function App() {
           labelAndInputContainerClass={'address-field-label-n-input-container'}
           onChangeOfEditableOption={handleChangeOfEditableInformation}
           handleAddingInputEntry={handleAddOfEditableEntry}
+          formActionButtonSize={"medium"}
+          formActionButtonColor={"secondary"}
+          formActionButtonRadius={"squircle"}
           submitText={'Submit'}
+          submitIcon={<FaArrowCircleRight size={'1.25rem'}/>}
           handleSubmitForm={handleSubmitForm}
-          hasReset
-          resetText={'Clear'}
-          handleReset={handleReset}
-          hasCancel
-          cancelText={'Back'}
-          handleCancel={handleCancel}
         />
       </div>
       <h2>Case 2: Without Fieldsets (non-expandable formInputs)</h2>
@@ -582,6 +599,9 @@ function App() {
           inputClass={'education-form-input'}
           labelClass={'education-form-label'}
           labelAndInputContainerClass={'education-form-label-n-input-container'}
+          formActionButtonSize={"large"}
+          formActionButtonColor={"primary"}
+          formActionButtonRadius={"pill"}
           submitText={'Submit'}
           handleSubmitForm={handleSubmitForm}
           hasReset
