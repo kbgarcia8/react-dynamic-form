@@ -174,6 +174,20 @@ const addressInputsArray = [
       editIcon: <.../>, //=>editIcon in EditableInputProps
       deleteIcon: <.../>,
       editing: ...,
+      //Styling options for editable option buttons
+      editableButtonSize: 'small', //small by default. Value can be only be one of the following: "small" | "smallest" | "smaller" | "medium" | "large" | "larger"
+      editableButtonColor: 'primary', //primary by default. Value can only be one of the following: "primary" | "secondary" | "ghost" | "bnw"
+      editableButtonRadius: 'squircle', //squircle by default. Value can only be one of the following: "circle" | "square" | "roundedsquare" | "squircle" | "pill"
+      //Optional props - text, start icon and end icon of editable option buttons
+      saveText: ...,
+      saveButtonStartIcon: <.../>,
+      saveButtonEndIcon: <.../>,
+      cancelText: ...,
+      cancelButtonStartIcon: <.../>,
+      cancelButtonEndIcon: <.../>,
+      deleteText: ...,
+      deleteButtonStartIcon: <.../>,
+      deleteButtonEndIcon: <.../>,
       //These are informations editable within radio input acting as selection
       editableInformation: [
           {
@@ -229,7 +243,9 @@ function App() {
 | `inputClass`   | `string`     | — | className for `<Input/>` component inside `<LabeledInput/>` component inside `<DynamicForm/>` |
 | `handleEditableInputEntryChange`   | `(e:React.ChangeEvent<HTMLInputElement\|HTMLTextAreaElement>) => void` | — | Function to handle onChange of editable inputs |
 | `handleAddingInputEntry`   | `(e:React.MouseEvent<HTMLButtonElement>) => void` | — | Function to add input entry. If isExpandable is false this is not enabled |
-| `hasSubmit`   | `boolean`     | `false` | This is to enable submit button for `<DynamicForm/>` |
+| `formActionButtonSize`   | `string` | `small` | Text size of form action buttons. Values can only be one of the following values: "small", "smallest", "smaller", "medium", "large", "larger" |
+| `formActionButtonColor`   | `string` | `primary` | Color of form action buttons. Values can only be one of the following: "primary", "secondary", "ghost", "bnw"  |
+| `formActionButtonRadius`   | `string` | `squircle` | Border radius of form action buttons. Values can only be one of the following: "circle", "square", "roundedsquare", "squircle", "pill" |
 | `submitText`   | `string`     | `Submit` | Text inside submit button for `<DynamicForm/>` |
 | `handleSubmit`   | `(e:React.MouseEvent<HTMLButtonElement>) => void`     | — | Function to handle submit logic for `<DynamicForm/>` |
 | `hasReset`   | `boolean`     | `false` | This is to enable reset button for `<DynamicForm/>` |
@@ -252,6 +268,18 @@ function App() {
 | `isEditable`   | `boolean`     | — | To determine if an input is editable or not. This is only applicable for radio or checkbox input to mimick an editable option/selection<br>If false, all props below are automatically not needed |
 | `editing`   | `boolean`     | — | To identify if an editable input is being modified<br>Can be used in open/close dialogs |
 | `onClickEdit`   | `(e:React.MouseEvent<HTMLButtonElement>) => void`     | — | Function to handle edit logic of editable input |
+| `editableButtonSize`   | `string` | `small` | Text size of editable option buttons. Values can only be one of the following values: "small", "smallest", "smaller", "medium", "large", "larger" |
+| `editableButtonColor`   | `string` | `primary` | Color of editable option buttons. Values can only be one of the following: "primary", "secondary", "ghost", "bnw"  |
+| `editableButtonRadius`   | `string` | `squircle` | Border radius of editable option buttons. Values can only be one of the following: "circle", "square", "roundedsquare", "squircle", "pill" |
+| `saveText`   | `string`     | `Save` | Text inside save button for `<NestedEditableOption/>` |
+| `saveButtonStartIcon`   | `React.ReactNode`     | — | TSX/JSX svg component that will serve as the icon before the text (if any) for save button of `<NestedEditableOption/>` |
+| `saveButtonEndIcon`   | `React.ReactNode`     | — | TSX/JSX svg component that will serve as the icon after the text (if any) for save button of `<NestedEditableOption/>` |
+| `cancelText`   | `string`     | `Cancel` | Text inside cancel button for `<NestedEditableOption/>` |
+| `cancelButtonStartIcon`   | `React.ReactNode`     | — | TSX/JSX svg component that will serve as the icon before the text (if any) for cancel button of `<NestedEditableOption/>` |
+| `cancelButtonEndIcon`   | `React.ReactNode`     | — | TSX/JSX svg component that will serve as the icon after the text (if any) for cancel button of `<NestedEditableOption/>` |
+| `deleteText`   | `string`     | `Delete` | Text inside delete button for `<NestedEditableOption/>` |
+| `deleteButtonStartIcon`   | `React.ReactNode`     | — | TSX/JSX svg component that will serve as the icon before the text (if any) for delete button of `<NestedEditableOption/>` |
+| `deleteButtonEndIcon`   | `React.ReactNode`     | — | TSX/JSX svg component that will serve as the icon after the text (if any) for delete button of `<NestedEditableOption/>` |
 | `editIcon`   | `React.ReactNode`     | — | TSX/JSX svg component that will serve as an icon for edit button of editable input |
 | `onClickDelete`   | `(e:React.MouseEvent<HTMLButtonElement>) => void`     | — | Function to handle delete logic of editable input |
 | `deleteIcon`   | `React.ReactNode`     | — | TSX/JSX svg component that will serve as an icon for delete button of editable input |
@@ -312,28 +340,66 @@ You allow overriding currentTheme:
 <!-- TOC --><a name="reminder-for-custom-theme-override"></a>
 ##### Reminder for custom theme override:
 
-Below is the supported format for creating a theme object. Usually consisting of light and dark theme
+Below is the supported format for creating a theme object. Usually consisting of light and dark theme. Note that you can specify as many color key-color group you like. In the example below is 'colors', 'anchorTheme', 'footerTheme' and 'notificationPalette'
 
 asColor function is used to ensure that color to be supplied in color properties are colors (e.g. hexcode and rgb code). Note that keys of colors are changeable since it has type ``
 
 ```tsx
 import { asColor } from '@kbgarcia8/react-dynamic-form'
 
+export const palette = {
+    primary1: asColor('#202234'),
+    primary2: asColor('#3C5E83'),
+    primary3: asColor('#0F60B6'),
+    ...
+}
+
 export const lightTheme:Theme = {
     name: 'light',
     colors: {
-        text: asColor('#333446'),
-        bg: asColor('#EEEEEE'),
-        ...
+      screenColor: palette.neutral2,
+      backgroundColor1: palette.primary1,
+      ...
+    },
+    anchorTheme: {
+      visited: palette.neutral5,
+      hover: palette.primary2,
+      active: palette.secondary2
+    },
+    footerTheme: {
+      backgroundColor: palette.neutral5,
+      textColor: palette.secondary1,
+      shadowColor: palette.shadow1
+    },
+    notificationPalette: {
+      infoText: asColor('#C9E6F0'),
+      infoBackground: asColor('#202234'),
+    ...
     }
 }
 
 export const darkTheme:Theme = {
     name: 'dark',
     colors: {
-        bg: asColor('#333446'),
-        text: asColor('#EEEEEE'),
-        ...
+      screenColor: palette.neutral5,
+      backgroundColor1: palette.primary2,
+      ...
+    },
+    anchorTheme: {
+      link: palette.neutral1,
+      visited: palette.neutral1,
+      hover: palette.primary3,
+      active: palette.secondary1
+    },
+    footerTheme: {
+      backgroundColor: palette.accent,
+      textColor: palette.primary1,
+      shadowColor: palette.shadow2
+    },
+    notificationPalette: {
+      infoText: asColor('#202234'),
+      infoBackground: asColor('#C9E6F0'),
+      ...
     }
 }
 ```
@@ -388,6 +454,9 @@ Every renderable part of the form receives predictable classes or id:
 | **Add Entry Button Wrapper** | `add-input-button-space`                              |                             |
 | **No Entry Message**         | *default styled component*                            | Target using parent wrapper |
 | **Children Container**       | `children-container`                                  |                             |
+
+#### Note/s
+- These classnames can also be used override styling using native CSS
 
 ```ts
 import styled from "styled-components";

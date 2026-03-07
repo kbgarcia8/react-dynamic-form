@@ -90,3 +90,10 @@
 ### Added
 - buttonSize, buttonColor and buttonRadius props to NestedEditableOption and FormActionButtons
 - Added props of molecules to DynamicForm organism accordingly
+
+### [2.0.4] 2026-03-07
+### Summary of Changes
+### Fixes/Adjustments
+- Explicitly added optional props in instance of NestedEditableOptions component in DynamicForm component
+- Props fixes in inputEntryShape type
+- README alignment with respect to recent changes since v2.0.0
