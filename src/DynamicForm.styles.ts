@@ -1,9 +1,9 @@
-import DynamicForm from '../components/organisms/DynamicForm'
+import DynamicForm from './components/organisms/DynamicForm'
 import styled from 'styled-components'
 
 export const StyledDynamicForm = styled(DynamicForm)`
-    background-color: ${({theme})=> theme.colors.screenColor};
-    color: ${({theme})=> theme.colors.textColor1};
+    background-color: ${({theme})=> theme.colors.bg};
+    color: ${({theme})=> theme.colors.text};
     &.with-fieldsets,
     &.without-fieldsets{
         height: auto;
@@ -34,8 +34,6 @@ export const StyledDynamicForm = styled(DynamicForm)`
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 25%;
-        transform: translateX(150%);
     }
     & .add-input-entry {
         width: 12.5%;
