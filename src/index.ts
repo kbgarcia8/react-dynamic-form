@@ -7,8 +7,11 @@ export { default as useTheme } from "./hooks/useTheme";
 export * from "./styles/theme";
 export type {
   FieldsetShape,
-  inputEntryShape,
+  InputEntry,
   DynamicFormProps,
+  NonEditableEntry,
+  EditableCheckboxEntry,
+  EditableTextEntry,
   LabeledCheckboxOrRadio,
   LabeledTextLike,
   FormActionButtonsProps,

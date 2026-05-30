@@ -4,7 +4,7 @@ import LabeledInput from "../../molecules/LabeledInput";
 import NestedEditableOption from "../..//molecules/NestedEditableOption";
 import FormActionButtons from "../../molecules/FormActionButtons";
 import * as Styled from "./DynamicForm.styles";
-import type { CheckedInput, DynamicFormProps, GeneralInput, inputEntryShape, TextAreaInput, FieldsetShape } from "../../../type/propTypes";
+import type { DynamicFormProps } from "../../../type/propTypes";
 
 const DynamicForm = ({
     fieldsets = null, 
@@ -32,8 +32,9 @@ const DynamicForm = ({
     handleCancel,
     handleSubmitForm,
     className,
-    children 
-}:React.PropsWithChildren<DynamicFormProps>) => {
+    childrenBefore,
+    childrenAfter
+}:DynamicFormProps) => {
     return (
         <Styled.Form id={`${id}-form`} className={className} onSubmit={handleSubmitForm}>
             {fieldsets
@@ -78,7 +79,7 @@ const DynamicForm = ({
                                         idx={inputIndex}
                                         className={`${labelAndInputContainerClass} ${input?.uniqueClass}`}
                                     />
-                                    {(input.editing && input.isEditable) && <NestedEditableOption
+                                    {(input.isEditable && input.editing) && <NestedEditableOption
                                         editableButtonSize={input.editableButtonSize}
                                         editableButtonColor={input.editableButtonColor}
                                         editableButtonRadius={input.editableButtonRadius}
@@ -154,12 +155,13 @@ const DynamicForm = ({
                                         idx={inputIndex}
                                         className={`${labelAndInputContainerClass} ${input?.uniqueClass}`}
                                     />
-                                    {(input.editing && input.isEditable) && <NestedEditableOption
+                                    {(input.isEditable && input.editing) && <NestedEditableOption
                                         editableButtonSize={input.editableButtonSize}
                                         editableButtonColor={input.editableButtonColor}
                                         editableButtonRadius={input.editableButtonRadius}
                                         legend={`${legendText}`}
                                         idx={inputIndex}
+                                        formInputId={input.dataAttributes?.['data-inputId']}
                                         saveText={input.saveText ?? undefined}
                                         saveButtonStartIcon={input.saveButtonStartIcon ?? undefined}
                                         saveButtonEndIcon={input.saveButtonEndIcon ?? undefined}
@@ -187,6 +189,9 @@ const DynamicForm = ({
                     </Styled.ButtonContainer>}
                 </Styled.FieldsetWrapper>
             }
+            <Styled.ChildrenContainer className={"children-before-container"}>
+                {childrenBefore}
+            </Styled.ChildrenContainer>
             <FormActionButtons
                 id={id}
                 formActionButtonSize={formActionButtonSize}
@@ -203,8 +208,8 @@ const DynamicForm = ({
                 cancelIcon={cancelIcon}
                 handleCancel={handleCancel}
             />
-            <Styled.ChildrenContainer className={"children-container"}>
-                {children}
+            <Styled.ChildrenContainer className={"children-after-container"}>
+                {childrenAfter}
             </Styled.ChildrenContainer>
         </Styled.Form>
     );

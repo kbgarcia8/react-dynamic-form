@@ -45,7 +45,7 @@ export interface BaseInput {
     id: string;
     onChange?: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> | undefined;
     isRequired: boolean;
-    dataAttributes?: dataAttributesType;
+    dataAttributes?: dataAttributesType & {"data-inputId": string};
     disabled?: boolean | undefined;
     className?: string;
     name: string;
@@ -121,6 +121,7 @@ export interface NestedEditableOptionProps {
     editableButtonRadius: keyof typeof RADIUS;
     legend?: string;
     fieldsetIndex?: number;
+    formInputId?: string;
     idx: number;
     saveText?: string;
     saveButtonStartIcon?: React.ReactNode;
@@ -137,76 +138,63 @@ export interface NestedEditableOptionProps {
     onClickCancelEdit?: React.MouseEventHandler<HTMLButtonElement>;
     onClickDeleteEntry?: React.MouseEventHandler<HTMLButtonElement>;
 }
-export type inputEntryShape<T extends boolean, P extends LabeledCheckboxOrRadio | LabeledTextLike> = P & {
+
+type BaseEntry<P> = P & {
     uniqueClass?: string;
-    isEditable: T;
-} & (T extends true ? P extends LabeledCheckboxOrRadio ? {
-    editableButtonSize: keyof typeof SIZES;
-    editableButtonColor: keyof typeof COLORS;
-    editableButtonRadius: keyof typeof RADIUS;
-    saveText?: string;
-    saveButtonStartIcon?: React.ReactNode;
-    saveButtonEndIcon?: React.ReactNode;
-    cancelText?: string;
-    cancelButtonStartIcon?: React.ReactNode;
-    cancelButtonEndIcon?: React.ReactNode;
-    deleteText?: string;
-    deleteButtonStartIcon?: React.ReactNode;
-    deleteButtonEndIcon?: React.ReactNode;
-    editableInformation: EditableInformation[];
+};
+
+export type NonEditableEntry<
+    P extends LabeledCheckboxOrRadio | LabeledTextLike
+> = BaseEntry<P> & {
+    isEditable: false;
+};
+
+type EditableBase<
+    P extends LabeledCheckboxOrRadio | LabeledTextLike
+> = BaseEntry<P> & {
+    isEditable: true;
     editing: boolean;
-    onClickEdit?: React.MouseEventHandler<HTMLButtonElement>;
-    editIcon: React.ReactNode;
-    onClickDelete?: React.MouseEventHandler<HTMLButtonElement>;
-    deleteIcon: React.ReactNode;
+    editableInformation: EditableInformation[];
     onClickSave?: React.MouseEventHandler<HTMLButtonElement>;
     onClickCancel?: React.MouseEventHandler<HTMLButtonElement>;
-} : {
-    editableButtonSize?:never;
-    editableButtonColor?:never;
-    editableButtonRadius?:never;
-    editableInformation?: never;
-    saveText?: never;
-    saveButtonStartIcon?: never;
-    saveButtonEndIcon?: never;
-    cancelText?: never;
-    cancelButtonStartIcon?: never;
-    cancelButtonEndIcon?: never;
-    deleteText?: never;
-    deleteButtonStartIcon?: never;
-    deleteButtonEndIcon?: never;
-    editing?: never;
-    onClickEdit?: never;
-    editIcon?: never;
-    onClickDelete?: never;
-    deleteIcon?: never;
-    onClickSave?: never;
-    onClickCancel?: never;
-} : {
-    editableButtonSize?:never;
-    editableButtonColor?:never;
-    editableButtonRadius?:never;
-    editableInformation?: never;
-    saveText?: never;
-    saveButtonStartIcon?: never;
-    saveButtonEndIcon?: never;
-    cancelText?: never;
-    cancelButtonStartIcon?: never;
-    cancelButtonEndIcon?: never;
-    deleteText?: never;
-    deleteButtonStartIcon?: never;
-    deleteButtonEndIcon?: never;
-    editing?: never;
-    onClickEdit?: never;
-    editIcon?: never;
-    onClickDelete?: never;
-    deleteIcon?: never;
-    onClickSave?: never;
-    onClickCancel?: never;
-});
+};
+
+export type EditableCheckboxEntry =
+    EditableBase<LabeledCheckboxOrRadio> & {
+        editableButtonSize: keyof typeof SIZES;
+        editableButtonColor: keyof typeof COLORS;
+        editableButtonRadius: keyof typeof RADIUS;
+
+        saveText?: string;
+        saveButtonStartIcon?: React.ReactNode;
+        saveButtonEndIcon?: React.ReactNode;
+
+        cancelText?: string;
+        cancelButtonStartIcon?: React.ReactNode;
+        cancelButtonEndIcon?: React.ReactNode;
+
+        deleteText?: string;
+        deleteButtonStartIcon?: React.ReactNode;
+        deleteButtonEndIcon?: React.ReactNode;
+
+        onClickEdit?: React.MouseEventHandler<HTMLButtonElement>;
+        editIcon?: React.ReactNode;
+
+        onClickDelete?: React.MouseEventHandler<HTMLButtonElement>;
+        deleteIcon?: React.ReactNode;
+    };
+
+export type EditableTextEntry = EditableBase<LabeledTextLike>;
+
+export type InputEntry =
+    | NonEditableEntry<LabeledCheckboxOrRadio>
+    | NonEditableEntry<LabeledTextLike>
+    | EditableCheckboxEntry
+    | EditableTextEntry;
+
 export interface FieldsetShape {
     legend: string;
-    inputs: Array<inputEntryShape<true, LabeledCheckboxOrRadio | LabeledTextLike> | inputEntryShape<false, LabeledCheckboxOrRadio | LabeledTextLike>>;
+    inputs: InputEntry[];
     isExpandable: boolean;
 }
 type ConditionalEditable<P> = P extends Array<infer Item> ? Item extends {
@@ -222,12 +210,12 @@ export type DynamicFormProps = FormActionButtonsProps & (({
     fieldsets: FieldsetShape[];
     formInputs?: never;
     legendText?: never;
-} & ConditionalEditable<Array<inputEntryShape<true, LabeledCheckboxOrRadio | LabeledTextLike> | inputEntryShape<false, LabeledCheckboxOrRadio | LabeledTextLike>>>) | ({
+} & ConditionalEditable<InputEntry[]>) | ({
     fieldsets: null;
-    formInputs: Array<inputEntryShape<true, LabeledCheckboxOrRadio | LabeledTextLike> | inputEntryShape<false, LabeledCheckboxOrRadio | LabeledTextLike>>;
+    formInputs: InputEntry[];
     legendText?: string;
     labelAndInputContainerClass?: string;
-} & ConditionalEditable<Array<inputEntryShape<true, LabeledCheckboxOrRadio | LabeledTextLike> | inputEntryShape<false, LabeledCheckboxOrRadio | LabeledTextLike>>>)) & ({
+} & ConditionalEditable<InputEntry[]>)) & ({
     isExpandable: true;
     handleAddingInputEntry: React.MouseEventHandler<HTMLButtonElement>;
 } | {
@@ -235,6 +223,8 @@ export type DynamicFormProps = FormActionButtonsProps & (({
     handleAddingInputEntry?: never;
 }) & {
     id: string;
+    childrenBefore?: React.ReactNode;
+    childrenAfter?: React.ReactNode;
     handleSubmitForm: React.FormEventHandler<HTMLFormElement>;
     className?: string;
     labelClass?: string;
