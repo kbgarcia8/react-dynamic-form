@@ -45,7 +45,7 @@ export interface BaseInput {
     id: string;
     onChange?: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> | undefined;
     isRequired: boolean;
-    dataAttributes?: dataAttributesType & {"data-inputId": string};
+    dataAttributes?: dataAttributesType & {"data-inputid": string};
     disabled?: boolean | undefined;
     className?: string;
     name: string;

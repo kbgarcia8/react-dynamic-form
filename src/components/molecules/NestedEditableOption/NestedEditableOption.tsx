@@ -44,16 +44,16 @@ const NestedEditableOption = ({
                         dataAttributes={{
                             "data-index": informationidx,
                             "data-fieldsetindex": fieldsetIndex,
-                            "data-inputId": formInputId ?? "",
+                            "data-inputid": formInputId ?? "",
                             "data-key": information['name']
                         }}
                     />
                 </Styled.LabelAndInputContainer>
             ))}                                            
             <Styled.ButtonContainer className={"editable-option-button-space"}>
-                <Button startIcon={saveButtonStartIcon} endIcon={saveButtonEndIcon}  size={editableButtonSize || 'small'} color={editableButtonColor || 'primary'} radius={editableButtonRadius || 'squircle'} id={`editable-option-${idx}-submit`} buttonType={"button"} text={saveText || "Save"} onClick={onClickSaveEdit} className={"editable-option-btn"} dataAttributes={{"data-index": idx, "data-fieldsetindex": fieldsetIndex, "data-inputId": formInputId}}/>
-                <Button startIcon={cancelButtonStartIcon} endIcon={cancelButtonEndIcon}  size={editableButtonSize || 'small'} color={editableButtonColor || 'primary'} radius={editableButtonRadius || 'squircle'} id={`editable-option-${idx}-cancel`} buttonType={"button"} text={cancelText || "Cancel"} onClick={onClickCancelEdit} className={"editable-option-btn"} dataAttributes={{"data-index": idx, "data-fieldsetindex": fieldsetIndex, "data-inputId": formInputId}}/>
-                <Button startIcon={deleteButtonStartIcon} endIcon={deleteButtonEndIcon}  size={editableButtonSize || 'small'} color={editableButtonColor || 'primary'} radius={editableButtonRadius || 'squircle'} id={`editable-option-${idx}-delete`} buttonType={"button"} text={deleteText || "Delete"} onClick={onClickDeleteEntry} className={"editable-option-btn"} dataAttributes={{"data-index": idx, "data-fieldsetindex": fieldsetIndex, "data-inputId": formInputId}}/>
+                <Button startIcon={saveButtonStartIcon} endIcon={saveButtonEndIcon}  size={editableButtonSize || 'small'} color={editableButtonColor || 'primary'} radius={editableButtonRadius || 'squircle'} id={`editable-option-${idx}-submit`} buttonType={"button"} text={saveText || "Save"} onClick={onClickSaveEdit} className={"editable-option-btn"} dataAttributes={{"data-index": idx, "data-fieldsetindex": fieldsetIndex, "data-inputid": formInputId}}/>
+                <Button startIcon={cancelButtonStartIcon} endIcon={cancelButtonEndIcon}  size={editableButtonSize || 'small'} color={editableButtonColor || 'primary'} radius={editableButtonRadius || 'squircle'} id={`editable-option-${idx}-cancel`} buttonType={"button"} text={cancelText || "Cancel"} onClick={onClickCancelEdit} className={"editable-option-btn"} dataAttributes={{"data-index": idx, "data-fieldsetindex": fieldsetIndex, "data-inputid": formInputId}}/>
+                <Button startIcon={deleteButtonStartIcon} endIcon={deleteButtonEndIcon}  size={editableButtonSize || 'small'} color={editableButtonColor || 'primary'} radius={editableButtonRadius || 'squircle'} id={`editable-option-${idx}-delete`} buttonType={"button"} text={deleteText || "Delete"} onClick={onClickDeleteEntry} className={"editable-option-btn"} dataAttributes={{"data-index": idx, "data-fieldsetindex": fieldsetIndex, "data-inputid": formInputId}}/>
             </Styled.ButtonContainer>
         </Styled.FormFieldset>
     )

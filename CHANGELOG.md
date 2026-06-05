@@ -97,3 +97,18 @@
 - Explicitly added optional props in instance of NestedEditableOptions component in DynamicForm component
 - Props fixes in inputEntryShape type
 - README alignment with respect to recent changes since v2.0.0
+
+### [2.0.5] 2026-05-30
+### Summary of Changes
+### Fixes/Adjustments
+- Change data-key for NestedEditableOption component FROM: "data-key": information['info']TO: "data-key": information['name'] since info is a changeable attribute and may cause lag
+- Fix discrimination of inputEntryShape because props if Editable is true is not working
+
+### Added
+- Add inputId data-attribute for input so that if no fieldsets with assistance of a setting it as a state. To know what element in the inputEntry is being edited
+- childrenBefore (children added before FormActionButtons) and childrenAfter (children added after FormActionButtons) props are added
+
+### [2.0.6] 2026-06-05
+### Summary of Changes
+### Fixes/Adjustments
+- Change inputId → inputid due to DOM error
