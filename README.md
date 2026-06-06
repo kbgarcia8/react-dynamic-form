@@ -241,22 +241,25 @@ function App() {
 | `labelAndInputContainerClass`   | `string`     | — | className for `<LabeledInput/>` component inside `<DynamicForm/>` |
 | `labelClass`   | `string`     | — | className for `<Label/>` component inside `<LabeledInput/>` component inside `<DynamicForm/>` |
 | `inputClass`   | `string`     | — | className for `<Input/>` component inside `<LabeledInput/>` component inside `<DynamicForm/>` |
-| `handleEditableInputEntryChange`   | `(e:React.ChangeEvent<HTMLInputElement\|HTMLTextAreaElement>) => void` | — | Function to handle onChange of editable inputs |
+| `onChangeOfEditableOption`   | `(e:React.ChangeEvent<HTMLInputElement\|HTMLTextAreaElement>) => void` | — | Function to handle onChange of editable inputs |
 | `handleAddingInputEntry`   | `(e:React.MouseEvent<HTMLButtonElement>) => void` | — | Function to add input entry. If isExpandable is false this is not enabled |
 | `formActionButtonSize`   | `string` | `small` | Text size of form action buttons. Values can only be one of the following values: "small", "smallest", "smaller", "medium", "large", "larger" |
 | `formActionButtonColor`   | `string` | `primary` | Color of form action buttons. Values can only be one of the following: "primary", "secondary", "ghost", "bnw"  |
 | `formActionButtonRadius`   | `string` | `squircle` | Border radius of form action buttons. Values can only be one of the following: "circle", "square", "roundedsquare", "squircle", "pill" |
 | `submitText`   | `string`     | `Submit` | Text inside submit button for `<DynamicForm/>` |
-| `handleSubmit`   | `(e:React.MouseEvent<HTMLButtonElement>) => void`     | — | Function to handle submit logic for `<DynamicForm/>` |
+| `submitIcon`   | `React.Node`     | `` | Icon inside submit button for `<DynamicForm/>` |
 | `hasReset`   | `boolean`     | `false` | This is to enable reset button for `<DynamicForm/>` |
 | `resetText`   | `string`     | `Reset` | Text inside reset button for `<DynamicForm/>` |
+| `resetIcon`   | `React.Node`     | `` | Icon inside reset button for `<DynamicForm/>` |
 | `handleReset`   | `(e:React.MouseEvent<HTMLButtonElement>) => void`     | — | Function to handle reset logic for `<DynamicForm/>` |
 | `hasCancel`   | `boolean`     | `false` | This is to cancel submit button for `<DynamicForm/>` |
 | `cancelText`   | `string`     | `Cancel` | Text inside cancel button for `<DynamicForm/>` |
+| `cancelIcon`   | `React.Node`     | `` | Icon inside cancel button for `<DynamicForm/>` |
 | `handleCancel`   | `(e:React.MouseEvent<HTMLButtonElement>) => void`     | — | Function to handle cancel logic for `<DynamicForm/>` |
 | `handleSubmitForm`   | `(e:React.FormEvent<HTMLFormElement>) => void`     | — | Function to handle form submit logic for `<DynamicForm/>` |
 | `className`   | `string`     | — | className for `<DynamicForm/>` |
-| `children`   | `React.ReactNode`     | — | React node/s or component placed after `<FormActionButtons/>` inside `<DynamicForm/>` |
+| `childrenBefore`   | `React.ReactNode`     | — | React node/s or component placed before `<FormActionButtons/>` inside `<DynamicForm/>` |
+| `childrenAfter`   | `React.ReactNode`     | — | React node/s or component placed after `<FormActionButtons/>` inside `<DynamicForm/>` |
 
 <!-- TOC --><a name="additional-props-information"></a>
 ### Additional Props information
